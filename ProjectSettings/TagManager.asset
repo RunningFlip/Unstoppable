@@ -8,6 +8,7 @@ TagManager:
   - BlackHole
   - PlanetOrbit
   - Selectable
+  - Item
   layers:
   - Default
   - TransparentFX

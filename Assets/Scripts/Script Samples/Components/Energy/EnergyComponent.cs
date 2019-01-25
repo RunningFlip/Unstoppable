@@ -24,9 +24,7 @@ public class EnergyComponent : EntityComponent
     public bool isDead;
 
     //Components
-    private MappingComponent mappingComponent;
     private StateComponent stateComponent;
-    private AnimationComponent animationComponent;
 
     //Event
     public SimpleEvent onMaxHealthChanged = new SimpleEvent();
@@ -45,9 +43,7 @@ public class EnergyComponent : EntityComponent
         lastEnergy = currentEnergy;
 
         //Components
-        mappingComponent = GetComponent<MappingComponent>();
         stateComponent = GetComponent<StateComponent>();
-        animationComponent = GetComponent<AnimationComponent>();
     }
 
 
@@ -66,6 +62,12 @@ public class EnergyComponent : EntityComponent
         if (currentEnergy != lastEnergy)
         {
             lastEnergy = currentEnergy;
+
+            if (currentEnergy > maxEnergy)
+            {
+                currentEnergy = maxEnergy;
+            }
+
             onCurrentHealthChanged.Invoke();
         }
     }

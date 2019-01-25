@@ -37,8 +37,15 @@ public class AttractionComponent : EntityComponent
                 Collider2D col = hittedColliders[i];
                 if (hittedColliders[i].CompareTag("Selectable"))
                 {
-                    Rigidbody2D rbody = col.GetComponent<EntityLink>().entityController.GetComponent<MappingComponent>().rbody;
-                    rbody.AddForce((pivot - rbody.transform.position).normalized * attraction * circleCollider.radius);
+                    EntityController entity = col.GetComponent<EntityLink>().entityController;
+                    StateComponent stateComponent = entity.GetComponent<StateComponent>();
+
+                    Rigidbody2D rbody = entity.GetComponent<MappingComponent>().rbody;
+                    
+                    if (stateComponent != null && stateComponent.StateIsEnabled(StateType.ExternalGravity)) 
+                    {
+                        rbody.AddForce((pivot - rbody.transform.position).normalized * attraction * circleCollider.radius);
+                    } 
                 }
             }
         }

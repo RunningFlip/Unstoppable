@@ -17,7 +17,6 @@ public class InputComponent : EntityComponent
     private DefaultInputActionSet actionSet = null;
 
     //Components
-    private MovementComponent movementComponent;
     private DashComponent dashComponent;
     private InteractComponent interactComponent;
 
@@ -30,7 +29,6 @@ public class InputComponent : EntityComponent
         if (actionSet == null) actionSet = new DefaultInputActionSet();
 
         //Components
-        movementComponent = GetComponent<MovementComponent>();
         dashComponent = GetComponent<DashComponent>();
         interactComponent = GetComponent<InteractComponent>();
     }
