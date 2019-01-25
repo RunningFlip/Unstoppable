@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AttractionComponent : EntityComponent
 {
-    [Header("Attraction Values")]
-    public float attraction;
-
     [Header("Component")]
     public CircleCollider2D circleCollider;
 
+
+    //Attraction
+    private float attraction = 0.6f;
 
     //Vectors
     private Vector3 pivot;
@@ -28,7 +28,7 @@ public class AttractionComponent : EntityComponent
 
     public override void UpdateComponent()
     {
-        hittedColliders = Physics2D.OverlapCircleAll(pivot, circleCollider.radius * 60);
+        hittedColliders = Physics2D.OverlapCircleAll(pivot, circleCollider.radius);
 
         if (hittedColliders.Length > 0)
         {
@@ -38,7 +38,7 @@ public class AttractionComponent : EntityComponent
                 if (hittedColliders[i].CompareTag("Selectable"))
                 {
                     Rigidbody2D rbody = col.GetComponent<EntityLink>().entityController.GetComponent<MappingComponent>().rbody;
-                    rbody.AddForce((pivot - rbody.transform.position).normalized * attraction);
+                    rbody.AddForce((pivot - rbody.transform.position).normalized * attraction * circleCollider.radius);
                 }
             }
         }
