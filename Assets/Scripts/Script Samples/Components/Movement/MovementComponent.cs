@@ -86,13 +86,11 @@ public class MovementComponent : EntityComponent
             currentMoveSpeed = accelerationCurve.Evaluate(passedAcceleration / acceleration) * moveSpeed;  //Calculation of the acceleration
             passedAcceleration += Time.fixedDeltaTime;
 
-            movement.MultVector(currentMoveSpeed * Time.fixedDeltaTime);
-            movementTransform.position = movementTransform.position.AddVectorOut(ref movement);
+            movementTransform.position += movement * (currentMoveSpeed * Time.fixedDeltaTime);
         }
         else                                    //Movement without acceleration
         {
-            movement.MultVector(moveSpeed * Time.fixedDeltaTime);
-            movementTransform.position = movementTransform.position.AddVectorOut(ref movement);
+            movementTransform.position += movement * (moveSpeed * Time.fixedDeltaTime);
         }
     }
 }
