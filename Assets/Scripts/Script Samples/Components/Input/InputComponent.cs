@@ -11,7 +11,7 @@ public class InputComponent : EntityComponent
 
 
     //Vectors
-    private Vector3 moveVector;
+    private Vector2 newDirection;
 
     //Actionset of controls
     private DefaultInputActionSet actionSet = null;
@@ -42,13 +42,14 @@ public class InputComponent : EntityComponent
 
 
         //Player movement-----------------------------------------------------
-        movementComponent.move = actionSet.movement.IsPressed;
-        if (movementComponent.move)                                           //Movement
+        /*
+        if (actionSet.movement.IsPressed)                                           //Movement
         {
-            moveVector = new Vector3(actionSet.movement.X, actionSet.movement.Y, 0);
-            movementComponent.movement = moveVector;
-            movementComponent.move = true;
+            newDirection = new Vector2(actionSet.movement.X, actionSet.movement.Y);
+            newDirection = newDirection.normalized;
+            movementComponent.currentDirection = newDirection;
         }
+        */
 
         //Actions-------------------------------------------------------------
         if (actionSet.attack.WasPressed)

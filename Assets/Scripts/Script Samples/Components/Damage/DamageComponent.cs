@@ -17,7 +17,7 @@ public class DamageComponent : EntityComponent
     private float dotTimer;
 
     //Components
-    private HealthComponent healthComponent;
+    private EnergyComponent healthComponent;
     private StateComponent stateComponent;
 
 
@@ -26,7 +26,7 @@ public class DamageComponent : EntityComponent
         if (isDot) updateType = UpdateType.Update; //Only for DOT
 
         //Components
-        healthComponent = GetComponent<HealthComponent>();
+        healthComponent = GetComponent<EnergyComponent>();
         stateComponent = GetComponent<StateComponent>();
 
         //Check if damage is allowed
@@ -42,7 +42,7 @@ public class DamageComponent : EntityComponent
         {
             if (dotTimer >= dotStep)    //Executs dot
             {
-                healthComponent.currentHealth -= damage;
+                healthComponent.currentEnergy -= damage;
                 ticks++;
                 dotTimer = 0;
             }
@@ -60,7 +60,7 @@ public class DamageComponent : EntityComponent
     /// </summary>
     private void AddDamage()
     {
-        healthComponent.currentHealth -= damage;
+        healthComponent.currentEnergy -= damage;
         Destroy(this);
     }
 

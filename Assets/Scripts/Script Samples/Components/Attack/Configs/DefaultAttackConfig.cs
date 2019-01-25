@@ -7,7 +7,7 @@ public class DefaultAttackConfig : AttackConfig
 
     protected override void SetupConfig()
     {
-        Debug.Log("Setup");                     //Setup  
+        Debug.Log("AttackConfig setup!");       //Setup  
     }
 
 

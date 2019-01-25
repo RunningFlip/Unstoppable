@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 
 
 /// <summary>
@@ -8,47 +7,40 @@ using System;
 [RequireComponent(typeof(MappingComponent), typeof(StateComponent))]
 public class MovementComponent : EntityComponent
 {
-    [Header("Movement values")]
-    public float moveSpeed;
-    public float acceleration;
-    public AnimationCurve accelerationCurve;
+    [Header("Impact values")]
+    public Vector2 currentDirection;
+    public float forceMultiplier;
 
-
-    //Movement applier
-    [NonSerialized]
-    public bool move;
-    [NonSerialized]
-    public Vector3 movement;
-
-    //Acceleation
-    private float passedAcceleration;
-    private float currentMoveSpeed;
-
-    //Flag
-    private bool lastMove;
-
-    //Vectors
-    private Vector3 moveVec = new Vector3(1, 1, 0);
+    //Floats
+    private float forceMagnitudeCap;
 
     //Components
-    private Transform movementTransform;
     private StateComponent stateComponent;
-    private AnimationComponent animationComponent;
+    private Rigidbody2D rbody;
+    private Transform movementTransform;
+
+    //Camera
+    private Camera mainCamera;
 
 
     public override void InitializeComponent()
     {
         updateType = UpdateType.FixedUpdate;
 
-        //Values
-        moveSpeed = GameController.Instance.GameParameter.moveSpeed;
-        acceleration = GameController.Instance.GameParameter.acceleration;
-        accelerationCurve = GameController.Instance.GameParameter.accelerationCurve;
-
         //Components
-        movementTransform = GetComponent<MappingComponent>().movementTransform;
         stateComponent = GetComponent<StateComponent>();
-        animationComponent = GetComponent<AnimationComponent>();
+        MappingComponent mapping = GetComponent<MappingComponent>();
+        rbody = mapping.rbody;
+        movementTransform = mapping.movementTransform;
+
+        //Parameters
+        forceMultiplier = GameController.Instance.GameParameter.forceMultiplier;
+        forceMagnitudeCap = GameController.Instance.GameParameter.forceMagnitudeCap;
+        rbody.drag = GameController.Instance.GameParameter.linearDrag;
+        rbody.angularDrag = GameController.Instance.GameParameter.angularDrag;
+
+        //Camera
+        mainCamera = Camera.main;
     }
 
 
@@ -56,41 +48,25 @@ public class MovementComponent : EntityComponent
     {
         if (!stateComponent.StateIsEnabled(StateType.Movement)) return;
 
-        //Animation control
-        if (lastMove != move)
-        {
-            lastMove = move;
-            animationComponent.move = move;
+        //Get current direction
+        currentDirection = GetMoveDirection();
 
-            passedAcceleration = 0;     //Resets acceleration
-            currentMoveSpeed = 0;       //Resets movespeed
-        }
-
-        //Movement
-        if (move)
+        //Force
+        if (rbody.velocity.magnitude < forceMagnitudeCap)
         {
-            Move();
+            rbody.AddForce(currentDirection * forceMultiplier, ForceMode2D.Force);
+            movementTransform.up = rbody.velocity; //Rotation
         }
     }
 
 
     /// <summary>
-    /// Moves the movement-transform of the entity.
+    /// Returns the direction from the playerobject to the mousecursor.
     /// </summary>
-    private void Move()
+    /// <returns></returns>
+    private Vector2 GetMoveDirection()
     {
-        movement = movement.normalized;         //Normalizes the movement vector
-
-        if (passedAcceleration < acceleration)  //Movement with acceleration
-        {
-            currentMoveSpeed = accelerationCurve.Evaluate(passedAcceleration / acceleration) * moveSpeed;  //Calculation of the acceleration
-            passedAcceleration += Time.fixedDeltaTime;
-
-            movementTransform.position += movement * (currentMoveSpeed * Time.fixedDeltaTime);
-        }
-        else                                    //Movement without acceleration
-        {
-            movementTransform.position += movement * (moveSpeed * Time.fixedDeltaTime);
-        }
+        return (Input.mousePosition - mainCamera.WorldToScreenPoint(movementTransform.position)).normalized;
     }
+
 }

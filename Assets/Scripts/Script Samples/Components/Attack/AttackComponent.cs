@@ -46,7 +46,7 @@ public class AttackComponent : EntityComponent
 
     public override void UpdateComponent()
     {
-        if (!stateComponent.StateIsEnabled(StateType.Attacking)) return;
+        //if (!stateComponent.StateIsEnabled(StateType.Attacking)) return;
 
         //Change Config
         if (updateConfig)

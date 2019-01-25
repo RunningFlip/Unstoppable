@@ -8,7 +8,6 @@ public class StateComponent : EntityComponent
 {
     [Header("States")]
     public int movingEnabled;
-    public int attackingEnabled;
     public int interactingEnabled;
     public int damageEnabled;
 
@@ -32,7 +31,6 @@ public class StateComponent : EntityComponent
     public void ResetStates()
     {
         movingEnabled = 0;
-        attackingEnabled = 0;
         interactingEnabled = 0;
         damageEnabled = 0;
     }
@@ -51,15 +49,11 @@ public class StateComponent : EntityComponent
         {
             case StateType.Everything:
                 movingEnabled += step;
-                attackingEnabled += step;
                 interactingEnabled += step;
                 damageEnabled += step;
                 break;
             case StateType.Movement:
                 movingEnabled += step;
-                break;
-            case StateType.Attacking:
-                attackingEnabled += step;
                 break;
             case StateType.Interacting:
                 interactingEnabled += step;
@@ -83,13 +77,10 @@ public class StateComponent : EntityComponent
         switch (_stateType)
         {
             case StateType.Everything:
-                enabled = (movingEnabled >= 0) && (attackingEnabled >= 0) && (interactingEnabled >= 0) && (damageEnabled >= 0);
+                enabled = (movingEnabled >= 0) && (interactingEnabled >= 0) && (damageEnabled >= 0);
                 break;
             case StateType.Movement:
                 enabled = (movingEnabled >= 0);
-                break;
-            case StateType.Attacking:
-                enabled = (attackingEnabled >= 0);
                 break;
             case StateType.Interacting:
                 enabled = (interactingEnabled >= 0);

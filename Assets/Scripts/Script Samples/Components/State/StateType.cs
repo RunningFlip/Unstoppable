@@ -3,10 +3,9 @@
 /// </summary>
 public enum StateType
 {
-    Movement = 0,
-    Attacking = 1,
-    Interacting = 2,
-    Damageable = 3,
+    Movement,
+    Interacting,
+    Damageable,
 
-    Everything = 4,
+    Everything ,
 }

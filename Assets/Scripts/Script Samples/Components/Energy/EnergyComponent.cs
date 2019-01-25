@@ -6,13 +6,13 @@ using System;
 /// Handles the health and death of the entity.
 /// </summary>
 [RequireComponent(typeof(MappingComponent), typeof(StateComponent))]
-public class HealthComponent : EntityComponent
+public class EnergyComponent : EntityComponent
 {
-    [Header("Health")]
-    public float maxHealth;
-    private float lastMaxHealth;
-    public float currentHealth;
-    private float lastHealth;
+    [Header("Energy")]
+    public float maxEnergy;
+    private float lastMaxEnergy;
+    public float currentEnergy;
+    private float lastEnergy;
 
     [Header("Audio")]
     public float volume;
@@ -39,10 +39,10 @@ public class HealthComponent : EntityComponent
         updateType = UpdateType.Update;
 
         //Health
-        maxHealth = GameController.Instance.GameParameter.maxHealth;
-        currentHealth = maxHealth;
-        lastMaxHealth = maxHealth;
-        lastHealth = currentHealth;
+        maxEnergy = GameController.Instance.GameParameter.maxEnergy;
+        currentEnergy = maxEnergy;
+        lastMaxEnergy = maxEnergy;
+        lastEnergy = currentEnergy;
 
         //Components
         mappingComponent = GetComponent<MappingComponent>();
@@ -56,19 +56,19 @@ public class HealthComponent : EntityComponent
         if (!stateComponent.StateIsEnabled(StateType.Damageable)) return;
 
         //Max health
-        if (maxHealth != lastMaxHealth)
+        if (maxEnergy != lastMaxEnergy)
         {
-            lastMaxHealth = maxHealth;
+            lastMaxEnergy = maxEnergy;
             onMaxHealthChanged.Invoke();
         }
 
         //Current health
-        if (currentHealth != lastHealth)
+        if (currentEnergy != lastEnergy)
         {
-            lastHealth = currentHealth;
+            lastEnergy = currentEnergy;
             onCurrentHealthChanged.Invoke();
 
-            if (currentHealth <= 0)
+            if (currentEnergy <= 0)
             {
                 isDead = true;
                 onDeath.Invoke();
@@ -103,10 +103,10 @@ public class HealthComponent : EntityComponent
     }
 
 
-    public static void AddHealthComponent(EntityController _entityController, float _maxHealth)
+    public static void AddEnergyComponent(EntityController _entityController, float _maxEnergy)
     {
-        HealthComponent component = _entityController.gameObject.AddComponent<HealthComponent>();
-        component.maxHealth = _maxHealth;
+        EnergyComponent component = _entityController.gameObject.AddComponent<EnergyComponent>();
+        component.maxEnergy = _maxEnergy;
         _entityController.AddComponent(component);
     }
 }
