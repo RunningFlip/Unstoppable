@@ -5,15 +5,19 @@ using System;
 public class ImpactComponent : EntityComponent
 {
     [Header("Impact Values")]
-    public float minHardBreach;
+    public float minHardBreach;    
 
     //Flag
     //[NonSerialized]
     public bool hardBreachEnabled;
+    private bool hardBreachBackLog;
 
     //Component
     private CollisionComponent collisionComponent;
     private Rigidbody2D rbody;
+
+    //Job
+    private WaitJob waitJob;s
 
 
     public override void InitializeComponent()
@@ -39,15 +43,32 @@ public class ImpactComponent : EntityComponent
     {
         if (rbody.velocity.magnitude >= minHardBreach)
         {
-            hardBreachEnabled = true;
+            hardBreachBackLog = true;
         }
         else
         {
-            hardBreachEnabled = false;
+            hardBreachBackLog = false;
+        }
+
+
+        //Set status
+        if (hardBreachBackLog != hardBreachEnabled)
+        {
+            hardBreachEnabled = hardBreachBackLog;
+
+            if (!hardBreachEnabled)
+            {
+                if (waitJob != null) waitJob.CancelJob();
+
+                waitJob = new WaitJob(delegate { hardBreachEnabled = false; }, 0.1f); //Resets the hardbreach flag after 0.1s.
+            }
         }
     }
 
 
+    /// <summary>
+    /// Triggers the impact on a planer´t,
+    /// </summary>
     private void PlanetImpact()
     {
         if (collisionComponent.lastCollision.CompareTag("Planet"))
