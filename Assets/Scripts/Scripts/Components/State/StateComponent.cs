@@ -8,6 +8,7 @@ public class StateComponent : EntityComponent
 {
     [Header("States")]
     public int movingEnabled;
+    public int dashEnabled;
     public int externalGravityEnabled;
     public int interactingEnabled;
     public int damageEnabled;
@@ -50,12 +51,16 @@ public class StateComponent : EntityComponent
         {
             case StateType.Everything:
                 movingEnabled += step;
+                dashEnabled += step;
                 externalGravityEnabled += step;
                 interactingEnabled += step;
                 damageEnabled += step;
                 break;
             case StateType.Movement:
                 movingEnabled += step;
+                break;
+            case StateType.Dash:
+                dashEnabled += step;
                 break;
             case StateType.ExternalGravity:
                 externalGravityEnabled += step;
@@ -82,10 +87,13 @@ public class StateComponent : EntityComponent
         switch (_stateType)
         {
             case StateType.Everything:
-                enabled = (movingEnabled >= 0) && (externalGravityEnabled >= 0) && (interactingEnabled >= 0) && (damageEnabled >= 0);
+                enabled = (movingEnabled >= 0) && (dashEnabled >= 0) && (externalGravityEnabled >= 0) && (interactingEnabled >= 0) && (damageEnabled >= 0);
                 break;
             case StateType.Movement:
                 enabled = (movingEnabled >= 0);
+                break;
+            case StateType.Dash:
+                enabled = (dashEnabled >= 0);
                 break;
             case StateType.ExternalGravity:
                 enabled = (externalGravityEnabled >= 0);
