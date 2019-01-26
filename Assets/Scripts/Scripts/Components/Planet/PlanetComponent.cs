@@ -39,6 +39,41 @@ public class PlanetComponent : EntityComponent
     private void OnDestroy()
     {
         onDeath.Invoke();
+        HandleDeathType();
     }
+
+
+    private void HandleDeathType()
+    {
+        switch (planetDeathType)
+        {
+            case PlanetDeathType.Normal_Death:
+                NormalDeath();
+                break;
+            case PlanetDeathType.Harvest_Death:
+                HarvestDeath();
+                break;
+            case PlanetDeathType.Supernova:
+                Supernova();
+                break;
+        }
+    }
+
+
+    private void NormalDeath()
+    {
+
+    }
+
+    private void HarvestDeath()
+    {
+
+    }
+
+    private void Supernova()
+    {
+
+    }
+
 }
 

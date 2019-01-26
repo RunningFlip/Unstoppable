@@ -47,11 +47,13 @@ public class HarvestComponent : EntityComponent
             {
                 planetComponent = circleComponent.currentPlanet;
                 planetComponent.onDeath.AddListener(delegate { ResetVariables(); });
+                planetComponent.GetComponent<ShakeComponent>().shake = true;
                 passedTime = 0;
             }
             else
             {
                 ResetVariables();
+                planetComponent.GetComponent<ShakeComponent>().shake = false;
                 planetComponent = null;
             }
         }
@@ -96,6 +98,8 @@ public class HarvestComponent : EntityComponent
     {
         energyComponent.maxEnergy += planetComponent.energyBonus;
         energyComponent.currentEnergy = energyComponent.maxEnergy;
+
+        planetComponent.planetDeathType = PlanetDeathType.Harvest_Death;
 
         ResetVariables();
 
