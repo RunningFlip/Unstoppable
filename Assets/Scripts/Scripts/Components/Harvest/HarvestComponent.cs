@@ -52,8 +52,8 @@ public class HarvestComponent : EntityComponent
             }
             else
             {
-                ResetVariables();
                 planetComponent.GetComponent<ShakeComponent>().shake = false;
+                ResetVariables();
                 planetComponent = null;
             }
         }
