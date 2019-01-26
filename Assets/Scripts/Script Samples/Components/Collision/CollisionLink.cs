@@ -9,7 +9,7 @@ public class CollisionLink : MonoBehaviour
 
 
     //Collision Enter
-    private void OnCollisionEnter(Collision _collision)
+    private void OnCollisionEnter2D(Collision2D _collision)
     {
         if (_collision != null)
         {
@@ -19,7 +19,7 @@ public class CollisionLink : MonoBehaviour
 
 
     //Collision Exit
-    private void OnCollisionExit(Collision _collision)
+    private void OnCollisionExit2D(Collision2D _collision)
     {
         if (_collision != null && collisionComponent.lastCollision != null)
         {
@@ -30,7 +30,7 @@ public class CollisionLink : MonoBehaviour
 
 
     //Trigger Enter
-    private void OnTriggerEnter(Collider _collision)
+    private void OnTriggerEnter2D(Collider2D _collision)
     {
         if (_collision != null)
         {
@@ -39,7 +39,7 @@ public class CollisionLink : MonoBehaviour
     }
 
     //Trigger Exit
-    private void OnTriggerExit(Collider _collision)
+    private void OnTriggerExit2D(Collider2D _collision)
     {
         if (_collision != null && collisionComponent.lastTrigger != null)
         {

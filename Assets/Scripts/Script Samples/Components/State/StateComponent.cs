@@ -50,9 +50,9 @@ public class StateComponent : EntityComponent
         {
             case StateType.Everything:
                 movingEnabled += step;
+                externalGravityEnabled += step;
                 interactingEnabled += step;
                 damageEnabled += step;
-                externalGravityEnabled += step;
                 break;
             case StateType.Movement:
                 movingEnabled += step;

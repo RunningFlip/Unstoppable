@@ -11,6 +11,7 @@ public class DashComponent : EntityComponent
     public float dashForce;
     public float cooldown;
     public float requiredEnergy;
+    public float gravityForbiddenTime;
 
 
     //Time
@@ -18,9 +19,11 @@ public class DashComponent : EntityComponent
 
     //Components
     private EnergyComponent energyComponent;
-    private MovementComponent movementComponent;
     private StateComponent stateComponent;
     private Rigidbody2D rbody;
+
+    //Job
+    private WaitJob resetJob;
 
 
 
@@ -28,9 +31,14 @@ public class DashComponent : EntityComponent
     {
         updateType = UpdateType.Update;
 
+        //Parameters
+        dashForce = GameController.Instance.GameParameter.dashForce;
+        cooldown = GameController.Instance.GameParameter.dashCoolDown;
+        requiredEnergy = GameController.Instance.GameParameter.dashRequiredEnergy;
+        gravityForbiddenTime = GameController.Instance.GameParameter.dashGravityForbiddenTime;
+
         //Components
         energyComponent = GetComponent<EnergyComponent>();
-        movementComponent = GetComponent<MovementComponent>();
         stateComponent = GetComponent<StateComponent>();
         rbody = GetComponent<MappingComponent>().rbody;
     }
@@ -62,9 +70,18 @@ public class DashComponent : EntityComponent
     /// </summary>
     private void Dash()
     {
+        stateComponent.SetState(StateType.ExternalGravity, false);
+
         lastTimeStamp = Time.time;
         energyComponent.currentEnergy -= requiredEnergy;
 
         rbody.AddForce(rbody.velocity * dashForce);
+
+        //Job
+        if (resetJob != null) resetJob.CancelJob();
+        resetJob = new WaitJob(delegate 
+        {
+            stateComponent.SetState(StateType.ExternalGravity, true);
+        }, gravityForbiddenTime);
     }
 }

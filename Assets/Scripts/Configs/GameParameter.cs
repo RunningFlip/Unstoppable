@@ -12,4 +12,13 @@ public class GameParameter : ScriptableObject
     public float forceMagnitudeCap;
     public float linearDrag;
     public float angularDrag;
+
+    [Header("Player Dash")]
+    public float dashForce;
+    public float dashCoolDown;
+    public float dashRequiredEnergy;
+    public float dashGravityForbiddenTime;
+
+    [Header("Player Hard Breach")]
+    public float minHardBreach;
 }
