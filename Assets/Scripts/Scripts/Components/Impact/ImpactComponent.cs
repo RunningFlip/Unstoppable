@@ -8,7 +8,7 @@ public class ImpactComponent : EntityComponent
     public float minHardBreach;
 
     //Flag
-    [NonSerialized]
+    //[NonSerialized]
     public bool hardBreachEnabled;
     private bool hardBreachBackLog;
 

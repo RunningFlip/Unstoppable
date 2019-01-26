@@ -13,6 +13,9 @@ public class GameParameter : ScriptableObject
     public float linearDrag;
     public float angularDrag;
 
+    [Header("Player Circle")]
+    public float circleRotateSpeed;
+
     [Header("Player Dash")]
     public float dashForce;
     public float dashCoolDown;

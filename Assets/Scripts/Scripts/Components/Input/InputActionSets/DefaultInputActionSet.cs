@@ -12,6 +12,7 @@ public class DefaultInputActionSet : PlayerActionSet
 
     //Actions
     public PlayerAction dash;
+    public PlayerAction select;
     public PlayerAction interact;
 
     //General
@@ -33,6 +34,7 @@ public class DefaultInputActionSet : PlayerActionSet
 
         //Actions
         dash = CreatePlayerAction("Dash");
+        select = CreatePlayerAction("Select");
         interact = CreatePlayerAction("Interact");
 
         //General
@@ -56,6 +58,7 @@ public class DefaultInputActionSet : PlayerActionSet
 
         //Actions
         dash.AddDefaultBinding(Mouse.LeftButton);
+        select.AddDefaultBinding(Mouse.RightButton);
         interact.AddDefaultBinding(Key.F);
 
         //General
