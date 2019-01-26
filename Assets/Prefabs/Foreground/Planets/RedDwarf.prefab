@@ -282,7 +282,7 @@ MonoBehaviour:
   circleCollider: {fileID: 58516274767599436}
   attractionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!114 &114833739886436108
 MonoBehaviour:
   m_ObjectHideFlags: 1
