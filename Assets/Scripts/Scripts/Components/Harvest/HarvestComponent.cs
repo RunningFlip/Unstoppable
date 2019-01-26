@@ -52,7 +52,11 @@ public class HarvestComponent : EntityComponent
             }
             else
             {
-                planetComponent.GetComponent<ShakeComponent>().shake = false;
+                if (planetComponent != null)
+                {
+                    planetComponent.GetComponent<ShakeComponent>().shake = false;
+                }
+                
                 ResetVariables();
                 planetComponent = null;
             }
@@ -100,6 +104,8 @@ public class HarvestComponent : EntityComponent
         energyComponent.currentEnergy = energyComponent.maxEnergy;
 
         planetComponent.planetDeathType = PlanetDeathType.Harvest_Death;
+
+        planetComponent.GetComponent<ShakeComponent>().shake = false;
 
         ResetVariables();
 

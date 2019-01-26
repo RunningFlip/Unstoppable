@@ -72,8 +72,8 @@ public class ImpactComponent : EntityComponent
 
                 waitJob = new WaitJob(delegate 
                 {
-                    hardBreachEnabled = false;
-                }, 0.4f); //Resets the hardbreach flag
+                    hardBreachEnabled = false; //Resets the hardbreach flag
+                }, 0.4f); 
             }
         }
     }
@@ -89,9 +89,10 @@ public class ImpactComponent : EntityComponent
         {
             PlanetComponent planet = collisionComponent.lastCollisionObject.GetComponent<EntityLink>().entityController.GetComponent<PlanetComponent>();
 
+            if (rbody.velocity.magnitude >= magnitude) SpawnParticles(planet, ref collisionComponent.collision);
+
             if (!_impact)
             {
-                if (rbody.velocity.magnitude >= magnitude) SpawnParticles(planet, collisionComponent.collision);
                 energyComponent.currentEnergy -= (int)(rbody.velocity.magnitude * energyComponent.energyMalus);
             }
 
@@ -108,7 +109,7 @@ public class ImpactComponent : EntityComponent
     /// Spawns the particles of the impact.
     /// </summary>
     /// <param name="_planetComponent"></param>
-    private void SpawnParticles(PlanetComponent _planetComponent, Collision2D _collision)
+    private void SpawnParticles(PlanetComponent _planetComponent, ref Collision2D _collision)
     {
         Vector3 hit = _collision.contacts[0].point;
         Vector3 normal = -_collision.contacts[0].normal;

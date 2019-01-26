@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114544057635051270}
   - component: {fileID: 114188476494822836}
   - component: {fileID: 114518403893078064}
+  - component: {fileID: 114349486101841700}
   m_Layer: 0
   m_Name: GreenPlanet
   m_TagString: Untagged
@@ -173,6 +174,18 @@ MonoBehaviour:
   attractionMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &114349486101841700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1647983976275910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aca609b8ac9b3447aa8d7c0971d709b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 0.1
 --- !u!114 &114445343570593126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +223,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyable: 1
   dangerous: 0
+  harvestable: 1
+  energyBonus: 0
+  energyStorage: 0
+  energyStorageStart: 0
+  planetDeathType: 0
   planetCollider: {fileID: 58033127138751176}
   orbitCollider: {fileID: 58655887215495714}
 --- !u!114 &114541342508512018

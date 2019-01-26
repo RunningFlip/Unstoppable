@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114594665988777666}
   - component: {fileID: 114906963060273722}
   - component: {fileID: 114369920010153832}
+  - component: {fileID: 114160557203238200}
   m_Layer: 0
   m_Name: LavaPlanet
   m_TagString: Untagged
@@ -177,6 +178,18 @@ MonoBehaviour:
   rbody: {fileID: 50426566686604094}
   colliders:
   - {fileID: 58733157990467088}
+--- !u!114 &114160557203238200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1574962283171680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aca609b8ac9b3447aa8d7c0971d709b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 0.1
 --- !u!114 &114369920010153832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +203,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyable: 1
   dangerous: 0
+  harvestable: 1
+  energyBonus: 0
+  energyStorage: 0
+  energyStorageStart: 0
+  planetDeathType: 0
   planetCollider: {fileID: 58733157990467088}
   orbitCollider: {fileID: 58514904457888304}
 --- !u!114 &114401560183447032

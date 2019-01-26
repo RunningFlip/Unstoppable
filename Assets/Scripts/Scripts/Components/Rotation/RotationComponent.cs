@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
+using System;
 
 
 public class RotationComponent : EntityComponent
 {
+    [NonSerialized]
+    public bool useRotation = true;
+
+
     //Vectors
     private Vector3 mousePos;
 
@@ -29,6 +34,8 @@ public class RotationComponent : EntityComponent
 
     public override void UpdateComponent()
     {
+        if (!useRotation) return;
+
         if (!stateComponent.StateIsEnabled(StateType.Movement)) return;
 
         //Mouseposition

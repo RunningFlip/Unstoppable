@@ -19,6 +19,7 @@ public class CircleComponent : EntityComponent
     public bool inCircle;
 
     //Floats
+    private float direction = 1;
     private float currentSpeed;
 
     //Vectors
@@ -28,6 +29,7 @@ public class CircleComponent : EntityComponent
     private MappingComponent mappingComponent;
     private StateComponent stateComponent;
     private DashComponent dashComponent;
+    private RotationComponent rotationComponent;
     private HarvestComponent harvestComponent;
     private Transform trans;
     private Rigidbody2D rbody;
@@ -51,6 +53,7 @@ public class CircleComponent : EntityComponent
         mappingComponent = GetComponent<MappingComponent>();
         stateComponent = GetComponent<StateComponent>();
         dashComponent = GetComponent<DashComponent>();
+        rotationComponent = GetComponent<RotationComponent>();
         harvestComponent = GetComponent<HarvestComponent>();
         trans = mappingComponent.movementTransform;
         rbody = mappingComponent.rbody;
@@ -143,6 +146,27 @@ public class CircleComponent : EntityComponent
 
         //Parameters
         pivot = _mappings.movementTransform.position;
+
+        //Direction
+        SetDirection(trans.position, _mappings.movementTransform.position);
+
+        //Rotation
+        rotationComponent.useRotation = false;
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="_myPos"></param>
+    /// <param name="_myDirection"></param>
+    /// <param name="_targetPos"></param>
+    private void SetDirection(Vector3 _myPos, Vector3 _targetPos)
+    {
+        Vector2 dir = (_targetPos - _myPos).normalized;
+        float angle = Vector3.SignedAngle(Vector3.up, dir, Vector3.forward);
+
+        if (angle > 0) direction = -1;
     }
 
 
@@ -174,9 +198,12 @@ public class CircleComponent : EntityComponent
     /// </summary>
     private void CircleAround()
     {
-        trans.position = RotatePointAroundPivot(trans.position, 
-            pivot, 
-            Quaternion.Euler(0, 0, currentSpeed * Time.deltaTime));
+        Vector3 newPos = RotatePointAroundPivot(trans.position,
+            pivot,
+            Quaternion.Euler(0, 0, currentSpeed * Time.deltaTime * direction));
+
+        trans.up = (newPos - trans.position).normalized; //Rotation
+        trans.position = newPos;
     }
 
 
@@ -190,6 +217,7 @@ public class CircleComponent : EntityComponent
             stateComponent.SetState(StateType.ExternalGravity, true);
             stateComponent.SetState(StateType.Movement, true);
         }
+        direction = 1;
 
         harvestComponent.inHarvest = false;
 
@@ -197,5 +225,7 @@ public class CircleComponent : EntityComponent
         currentPlanet = null;
 
         inCircle = false;
+
+        rotationComponent.useRotation = true;
     }
 }

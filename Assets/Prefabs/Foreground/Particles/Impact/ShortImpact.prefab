@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4496666448996946}
   - component: {fileID: 198406808637483824}
   - component: {fileID: 199550121085549280}
+  - component: {fileID: 114318714838622802}
+  - component: {fileID: 114514126913452398}
   m_Layer: 0
   m_Name: ShortImpact
   m_TagString: Untagged
@@ -41,6 +43,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114318714838622802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1019903959368660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e343c97a9c345a4e9bacde958baa802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114514126913452398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1019903959368660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4947e3fcd09948c4082049cf0d13baab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathType: 0
+  delayTime: 0.3
 --- !u!198 &198406808637483824
 ParticleSystem:
   m_ObjectHideFlags: 1

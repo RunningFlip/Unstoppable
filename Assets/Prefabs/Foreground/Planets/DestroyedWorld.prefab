@@ -169,8 +169,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyable: 1
+  destroyable: 0
   dangerous: 0
+  harvestable: 0
+  energyBonus: 0
+  energyStorage: 0
+  energyStorageStart: 0
+  planetDeathType: 0
   planetCollider: {fileID: 58331591765889792}
   orbitCollider: {fileID: 58654407362123156}
 --- !u!114 &114173688146786864

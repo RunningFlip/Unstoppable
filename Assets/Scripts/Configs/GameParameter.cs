@@ -29,4 +29,9 @@ public class GameParameter : ScriptableObject
     public float minHardBreach;
     public int energyMalus;
     public float spawnMagnitude;
+
+    [Header("Death Type Prefabs")]
+    public GameObject deathParticlePrefab;
+    public GameObject deathStarPrefab;
+    public GameObject blackHolePrefab;
 }

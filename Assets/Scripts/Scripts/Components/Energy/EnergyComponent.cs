@@ -28,7 +28,6 @@ public class EnergyComponent : EntityComponent
 
     //Components
     private StateComponent stateComponent;
-    private Rigidbody2D rbody;
 
     //Event
     public SimpleEvent onMaxHealthChanged = new SimpleEvent();
@@ -49,7 +48,6 @@ public class EnergyComponent : EntityComponent
 
         //Components
         stateComponent = GetComponent<StateComponent>();
-        rbody = GetComponent<MappingComponent>().rbody;
     }
 
 

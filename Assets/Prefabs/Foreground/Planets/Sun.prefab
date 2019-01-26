@@ -59,6 +59,8 @@ GameObject:
   - component: {fileID: 114391452484467580}
   - component: {fileID: 114324119393793402}
   - component: {fileID: 114649469726220814}
+  - component: {fileID: 114847728731036054}
+  - component: {fileID: 114593004282261578}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -279,6 +281,18 @@ MonoBehaviour:
   rbody: {fileID: 50744382397701216}
   colliders:
   - {fileID: 58180005541955354}
+--- !u!114 &114593004282261578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448190403716028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aca609b8ac9b3447aa8d7c0971d709b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 0.7
 --- !u!114 &114649469726220814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -294,6 +308,26 @@ MonoBehaviour:
   attractionMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &114847728731036054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1448190403716028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyable: 0
+  dangerous: 1
+  harvestable: 1
+  energyBonus: 0
+  energyStorage: 0
+  energyStorageStart: 0
+  planetDeathType: 0
+  planetCollider: {fileID: 58180005541955354}
+  orbitCollider: {fileID: 58289178915756092}
 --- !u!114 &114880635755195830
 MonoBehaviour:
   m_ObjectHideFlags: 1
