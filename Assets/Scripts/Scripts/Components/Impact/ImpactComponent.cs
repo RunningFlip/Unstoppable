@@ -7,6 +7,12 @@ public class ImpactComponent : EntityComponent
     [Header("Impact Values")]
     public float minHardBreach;
 
+    [Header("Particles")]
+    public float magnitude;
+    public GameObject hitParticlesPrefab;
+    public GameObject impactParticlesPrefab;
+
+
     //Flag
     [NonSerialized]
     public bool hardBreachEnabled;
@@ -27,6 +33,7 @@ public class ImpactComponent : EntityComponent
 
         //Parameters
         minHardBreach = GameController.Instance.GameParameter.minHardBreach;
+        magnitude = GameController.Instance.GameParameter.spawnMagnitude;
 
         //Components
         collisionComponent = GetComponent<CollisionComponent>();
@@ -36,7 +43,8 @@ public class ImpactComponent : EntityComponent
         //Event
         collisionComponent.onCollision.AddListener(delegate
         {
-            if (hardBreachEnabled) PlanetImpact();
+            if (hardBreachEnabled) PlanetImpact(true);
+            else PlanetImpact(false);
         });
     }
 
@@ -71,21 +79,45 @@ public class ImpactComponent : EntityComponent
     }
 
 
+
     /// <summary>
     /// Triggers the impact on a planer´t,
     /// </summary>
-    private void PlanetImpact()
+    private void PlanetImpact(bool _impact)
     {
-        if (collisionComponent.lastCollision.CompareTag("Planet"))
+        if (collisionComponent.lastCollisionObject.CompareTag("Planet"))
         {
-            PlanetComponent planet = collisionComponent.lastCollision.GetComponent<EntityLink>().entityController.GetComponent<PlanetComponent>();
+            PlanetComponent planet = collisionComponent.lastCollisionObject.GetComponent<EntityLink>().entityController.GetComponent<PlanetComponent>();
 
-            if (planet.destroyable && !planet.dangerous)
+            if (!_impact)
             {
-                DeathSimpleComponent.AddDeathSimpleComponent(collisionComponent.lastCollision.GetComponent<EntityLink>().entityController);
+                if (rbody.velocity.magnitude >= magnitude) SpawnParticles(planet, collisionComponent.collision);
+                energyComponent.currentEnergy -= (int)(rbody.velocity.magnitude * energyComponent.energyMalus);
+            }
+
+            if (planet.destroyable && !planet.dangerous && _impact)
+            {
+                DeathSimpleComponent.AddDeathSimpleComponent(collisionComponent.lastCollisionObject.GetComponent<EntityLink>().entityController);
                 rbody.AddForce(-rbody.velocity / 2);
             }
         }
+    }
+
+
+    /// <summary>
+    /// Spawns the particles of the impact.
+    /// </summary>
+    /// <param name="_planetComponent"></param>
+    private void SpawnParticles(PlanetComponent _planetComponent, Collision2D _collision)
+    {
+        Vector3 hit = _collision.contacts[0].point;
+        Vector3 normal = -_collision.contacts[0].normal;
+
+        Quaternion rotation = new Quaternion();
+        rotation.SetLookRotation(normal);
+
+        Instantiate(hitParticlesPrefab, hit, Quaternion.identity);
+        Instantiate(impactParticlesPrefab, hit + (normal * _planetComponent.planetCollider.radius), rotation);
     }
 
 }

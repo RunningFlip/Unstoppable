@@ -10,12 +10,16 @@ public class CircleComponent : EntityComponent
     public bool reset;
 
     [Header("Circle Values")]
-    public float rotateSpeed = 5f;
+    public float rotateSpeed = 10f;
     public LayerMask planetLayer;
-    
+
 
     //Flag
-    private bool inCircle;
+    [NonSerialized]
+    public bool inCircle;
+
+    //Floats
+    private float currentSpeed;
 
     //Vectors
     private Vector3 pivot;
@@ -24,11 +28,13 @@ public class CircleComponent : EntityComponent
     private MappingComponent mappingComponent;
     private StateComponent stateComponent;
     private DashComponent dashComponent;
+    private HarvestComponent harvestComponent;
     private Transform trans;
     private Rigidbody2D rbody;
 
     //Other components
-    private PlanetComponent currentPlanet;
+    [NonSerialized]
+    public PlanetComponent currentPlanet;
 
     //Camera
     private Camera mainCamera;
@@ -45,6 +51,7 @@ public class CircleComponent : EntityComponent
         mappingComponent = GetComponent<MappingComponent>();
         stateComponent = GetComponent<StateComponent>();
         dashComponent = GetComponent<DashComponent>();
+        harvestComponent = GetComponent<HarvestComponent>();
         trans = mappingComponent.movementTransform;
         rbody = mappingComponent.rbody;
 
@@ -64,15 +71,22 @@ public class CircleComponent : EntityComponent
 
         //Init
         if (tryCircle)
-        {
-            tryCircle = false;         
-            TryToCircle();
+        {    
+            if (!inCircle)
+            {
+                TryToCircle();
+            }
+            else
+            {
+                CircleAround();
+            }
         }
-
-        //Circle
-        if (inCircle)
+        else
         {
-            CircleAround();
+            if (inCircle)
+            {
+                ResetParameter();
+            }
         }
     }
 
@@ -94,8 +108,11 @@ public class CircleComponent : EntityComponent
             {
                 inCircle = true;
                 currentPlanet = mappings.GetComponent<PlanetComponent>();;
-
                 currentPlanet.onDeath.AddListener(ResetParameter);
+
+                float currentMag = (trans.position - mappings.movementTransform.position).magnitude;
+                currentSpeed = (currentMag / currentPlanet.orbitCollider.radius) * rotateSpeed;
+
                 SetVariables(ref mappings);
             }
             else
@@ -115,8 +132,14 @@ public class CircleComponent : EntityComponent
         stateComponent.SetState(StateType.ExternalGravity, false);
         stateComponent.SetState(StateType.Movement, false);
 
+        //Harvest
+        if (currentPlanet.harvestable) harvestComponent.inHarvest = true;
+
         //Flag -> dash for free
         dashComponent.freeDash = true;
+
+        //Velocity
+        rbody.velocity = Vector2.zero;
 
         //Parameters
         pivot = _mappings.movementTransform.position;
@@ -153,7 +176,7 @@ public class CircleComponent : EntityComponent
     {
         trans.position = RotatePointAroundPivot(trans.position, 
             pivot, 
-            Quaternion.Euler(0, 0, rotateSpeed * Time.deltaTime));
+            Quaternion.Euler(0, 0, currentSpeed * Time.deltaTime));
     }
 
 
@@ -168,7 +191,9 @@ public class CircleComponent : EntityComponent
             stateComponent.SetState(StateType.Movement, true);
         }
 
-        currentPlanet.onDeath.RemoveListener(ResetParameter);
+        harvestComponent.inHarvest = false;
+
+        if (currentPlanet != null) currentPlanet.onDeath.RemoveListener(ResetParameter);
         currentPlanet = null;
 
         inCircle = false;

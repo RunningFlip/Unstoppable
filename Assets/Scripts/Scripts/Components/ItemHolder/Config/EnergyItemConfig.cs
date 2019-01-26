@@ -5,7 +5,7 @@
 public class EnergyItemConfig : ItemConfig
 {
     [Header("Energy values")]
-    public float energy;
+    public int energy;
 
 
     public override void Execute(EntityController _entityController, EntityController _myEntity)

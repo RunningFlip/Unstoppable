@@ -74,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574962283171680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.86, y: -15.8, z: -0.71387416}
+  m_LocalPosition: {x: -9.85, y: -15.8, z: -0.71387416}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4473303014188052}
@@ -188,6 +188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyable: 1
+  dangerous: 0
+  planetCollider: {fileID: 58733157990467088}
   orbitCollider: {fileID: 58514904457888304}
 --- !u!114 &114401560183447032
 MonoBehaviour:

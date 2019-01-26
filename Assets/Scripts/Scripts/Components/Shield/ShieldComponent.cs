@@ -30,9 +30,9 @@ public class ShieldComponent : EntityComponent
     /// </summary>
     private void CheckCollision()
     {
-        if (collisionComponent.lastCollision.CompareTag("Planet"))
+        if (collisionComponent.lastCollisionObject.CompareTag("Planet"))
         {
-            PlanetComponent planet = collisionComponent.lastCollision.GetComponent<EntityLink>().entityController.GetComponent<PlanetComponent>();
+            PlanetComponent planet = collisionComponent.lastCollisionObject.GetComponent<EntityLink>().entityController.GetComponent<PlanetComponent>();
             if (planet.dangerous)
             {
                 DeathSimpleComponent.AddDeathSimpleComponent(GetComponent<EntityController>());

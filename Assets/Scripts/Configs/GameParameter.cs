@@ -5,7 +5,7 @@
 public class GameParameter : ScriptableObject
 {
     [Header("Player Energy")]
-    public float maxEnergy;
+    public int maxEnergy;
 
     [Header("Player Movement")]
     public float forceMultiplier;
@@ -16,13 +16,17 @@ public class GameParameter : ScriptableObject
     [Header("Player Circle")]
     public float circleRotateSpeed;
 
+    [Header("Player Harvest")]
+    public float harvestInterval;
+
     [Header("Player Dash")]
     public float dashForce;
     public float dashCoolDown;
-    public float dashRequiredEnergy;
+    public int dashRequiredEnergy;
     public float dashGravityForbiddenTime;
 
-    [Header("Player Hard Breach")]
+    [Header("Player Impacat")]
     public float minHardBreach;
-    public float energyMalus;
+    public int energyMalus;
+    public float spawnMagnitude;
 }

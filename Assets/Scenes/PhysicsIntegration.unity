@@ -132,10 +132,11 @@ GameObject:
   - component: {fileID: 6627533}
   - component: {fileID: 6627539}
   - component: {fileID: 6627529}
+  - component: {fileID: 6627527}
   - component: {fileID: 6627530}
   - component: {fileID: 6627531}
   - component: {fileID: 6627528}
-  - component: {fileID: 6627527}
+  - component: {fileID: 6627532}
   m_Layer: 0
   m_Name: Player Entity
   m_TagString: Player
@@ -182,6 +183,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minHardBreach: 0
+  magnitude: 0
+  hitParticlesPrefab: {fileID: 1019903959368660, guid: 6f9a66e27ed08144a8b1f9c67258d6ea,
+    type: 2}
+  impactParticlesPrefab: {fileID: 1831962989432422, guid: 5a59e40ba4b49ea4b8f0ff00377d9be8,
+    type: 2}
 --- !u!114 &6627528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +216,7 @@ MonoBehaviour:
   cooldown: 0
   requiredEnergy: 0
   gravityForbiddenTime: 0
+  inReset: 0
 --- !u!114 &6627530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +245,18 @@ MonoBehaviour:
   energyMalus: 0
   volume: 0
   deathAudioClip: {fileID: 0}
+--- !u!114 &6627532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 6627524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7a79cc972186644974b2d5e4706a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  harvestInterval: 0
 --- !u!114 &6627533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,14 +411,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114567557933925284, guid: 0f86c2226c6d8aa48a7d290730802fe5,
+    - target: {fileID: 114148171173026976, guid: 0f86c2226c6d8aa48a7d290730802fe5,
         type: 2}
-      propertyPath: destroyable
+      propertyPath: harvestable
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114532407075362958, guid: 0f86c2226c6d8aa48a7d290730802fe5, type: 2}
-    - {fileID: 114446245281425894, guid: 0f86c2226c6d8aa48a7d290730802fe5, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f86c2226c6d8aa48a7d290730802fe5, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &126417985
@@ -581,7 +598,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114219713418848254, guid: bc476e1e03fe45244a37be9664a4e381,
         type: 2}
-      propertyPath: dangerous
+      propertyPath: harvestable
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -638,7 +655,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114805727370315754, guid: c0323cf5d04b32346932022fd687a077,
         type: 2}
-      propertyPath: destroyable
+      propertyPath: harvestable
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1211,7 +1228,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1489,11 +1506,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4012024699144166, guid: 66f5c651fc178e547899d2d5ee736159,
     type: 2}
   m_PrefabInternal: {fileID: 190729191}
---- !u!58 &744834842 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 58358214901826360, guid: bacda4b81cbc2f24daadc9e1661de2d7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1819055903}
 --- !u!1 &753036904
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,7 +1763,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114899072286577746, guid: 8710200dbbbd4494181697faac97c66c,
         type: 2}
-      propertyPath: destroyable
+      propertyPath: harvestable
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1924,9 +1936,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114385884215736522, guid: 95efef4e229ea9044bde99ebf1e5f643,
+    - target: {fileID: 114518403893078064, guid: 95efef4e229ea9044bde99ebf1e5f643,
         type: 2}
-      propertyPath: destroyable
+      propertyPath: harvestable
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2217,7 +2229,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114225518362885108, guid: a11ead1c62a61e446a046902cbba228c,
         type: 2}
-      propertyPath: dangerous
+      propertyPath: harvestable
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2683,7 +2695,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114369920010153832, guid: 0a2bfd7a65688e14982142ff84bc6a6e,
         type: 2}
-      propertyPath: destroyable
+      propertyPath: harvestable
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2738,8 +2750,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114737015095566904, guid: bacda4b81cbc2f24daadc9e1661de2d7, type: 2}
+    - target: {fileID: 114475794391869408, guid: bacda4b81cbc2f24daadc9e1661de2d7,
+        type: 2}
+      propertyPath: harvestable
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bacda4b81cbc2f24daadc9e1661de2d7, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &1820986691 stripped
@@ -2836,14 +2852,12 @@ Prefab:
       propertyPath: m_Name
       value: GlowingPlanet
       objectReference: {fileID: 0}
-    - target: {fileID: 114532407075362958, guid: 0f86c2226c6d8aa48a7d290730802fe5,
+    - target: {fileID: 114148171173026976, guid: 0f86c2226c6d8aa48a7d290730802fe5,
         type: 2}
-      propertyPath: destroyable
+      propertyPath: harvestable
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114446245281425894, guid: 0f86c2226c6d8aa48a7d290730802fe5, type: 2}
-    - {fileID: 114567557933925284, guid: 0f86c2226c6d8aa48a7d290730802fe5, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f86c2226c6d8aa48a7d290730802fe5, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &1854845889 stripped
@@ -2904,35 +2918,20 @@ Prefab:
       propertyPath: m_Name
       value: GasPlanet (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114532407075362958, guid: 0f86c2226c6d8aa48a7d290730802fe5,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: destroyable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114148171173026976, guid: 0f86c2226c6d8aa48a7d290730802fe5,
+        type: 2}
+      propertyPath: harvestable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 114446245281425894, guid: 0f86c2226c6d8aa48a7d290730802fe5, type: 2}
-    - {fileID: 114567557933925284, guid: 0f86c2226c6d8aa48a7d290730802fe5, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 0f86c2226c6d8aa48a7d290730802fe5, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1943412524 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1206027341629126, guid: bacda4b81cbc2f24daadc9e1661de2d7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1819055903}
---- !u!114 &1943412529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1943412524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyable: 1
-  dangerous: 0
-  orbitCollider: {fileID: 744834842}
 --- !u!4 &1954577484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4012024699144166, guid: 66f5c651fc178e547899d2d5ee736159,

@@ -45,10 +45,9 @@ public class InputComponent : EntityComponent
         {
             dashComponent.dash = true;
         }
-        if (actionSet.select.WasPressed)
-        {
-            circleComponent.tryCircle = true;
-        }
+
+        circleComponent.tryCircle = actionSet.select.IsPressed;
+
         if (actionSet.interact.WasPressed)
         {
             Debug.Log("Interact was pressed!");

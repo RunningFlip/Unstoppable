@@ -13,7 +13,8 @@ public class CollisionLink : MonoBehaviour
     {
         if (_collision != null)
         {
-            collisionComponent.lastCollision = _collision.gameObject;
+            collisionComponent.lastCollisionObject = _collision.gameObject;
+            collisionComponent.collision = _collision;
         }
     }
 
@@ -21,9 +22,10 @@ public class CollisionLink : MonoBehaviour
     //Collision Exit
     private void OnCollisionExit2D(Collision2D _collision)
     {
-        if (_collision != null && collisionComponent.lastCollision != null)
+        if (_collision != null && collisionComponent.lastCollisionObject != null)
         {
-            collisionComponent.lastCollision = null;
+            collisionComponent.lastCollisionObject = null;
+            collisionComponent.collision = null;
         }
     }
 
@@ -34,16 +36,18 @@ public class CollisionLink : MonoBehaviour
     {
         if (_collision != null)
         {
-            collisionComponent.lastTrigger = _collision.gameObject;
+            collisionComponent.lastTriggerObject = _collision.gameObject;
+            collisionComponent.trigger = _collision;
         }
     }
 
     //Trigger Exit
     private void OnTriggerExit2D(Collider2D _collision)
     {
-        if (_collision != null && collisionComponent.lastTrigger != null)
+        if (_collision != null && collisionComponent.lastTriggerObject != null)
         {
-            collisionComponent.lastTrigger = null;
+            collisionComponent.lastTriggerObject = null;
+            collisionComponent.trigger = null;
         }
     }
 

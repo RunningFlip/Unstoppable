@@ -17,9 +17,11 @@ MonoBehaviour:
   linearDrag: 1.2
   angularDrag: 1.2
   circleRotateSpeed: 100
+  harvestInterval: 0.2
   dashForce: 100
   dashCoolDown: 1.5
   dashRequiredEnergy: 5
   dashGravityForbiddenTime: 2
   minHardBreach: 30
-  energyMalus: 4
+  energyMalus: 5
+  spawnMagnitude: 3

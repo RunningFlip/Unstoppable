@@ -9,13 +9,13 @@ using System;
 public class EnergyComponent : EntityComponent
 {
     [Header("Energy")]
-    public float maxEnergy;
-    private float lastMaxEnergy;
-    public float currentEnergy;
-    private float lastEnergy;
+    public int maxEnergy;
+    private int lastMaxEnergy;
+    public int currentEnergy;
+    private int lastEnergy;
 
     [Header("Collision")]
-    public float energyMalus;
+    public int energyMalus;
 
     [Header("Audio")]
     public float volume;
@@ -28,7 +28,6 @@ public class EnergyComponent : EntityComponent
 
     //Components
     private StateComponent stateComponent;
-    private CollisionComponent collisionComponent;
     private Rigidbody2D rbody;
 
     //Event
@@ -50,11 +49,7 @@ public class EnergyComponent : EntityComponent
 
         //Components
         stateComponent = GetComponent<StateComponent>();
-        collisionComponent = GetComponent<CollisionComponent>();
         rbody = GetComponent<MappingComponent>().rbody;
-
-        //Event
-        collisionComponent.onCollision.AddListener(delegate { CheckCollision(); });
     }
 
 
@@ -82,19 +77,7 @@ public class EnergyComponent : EntityComponent
     }
 
 
-    /// <summary>
-    /// Checks if the entity collides with an planet and decreases the energy value.
-    /// </summary>
-    private void CheckCollision()
-    {
-        if (collisionComponent.lastCollision.CompareTag("Planet"))
-        {
-            currentEnergy -= (rbody.velocity.magnitude * energyMalus);
-        }
-    }
-
-
-    public static void AddEnergyComponent(EntityController _entityController, float _maxEnergy)
+    public static void AddEnergyComponent(EntityController _entityController, int _maxEnergy)
     {
         EnergyComponent component = _entityController.gameObject.AddComponent<EnergyComponent>();
         component.maxEnergy = _maxEnergy;

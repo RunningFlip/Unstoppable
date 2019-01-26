@@ -10,7 +10,7 @@ public abstract class Job
     /// If true, the job is activated and will be updated from the jobsystem.
     /// </summary>
     [NonSerialized]
-    private bool isActive;
+    public bool isActive;
 
     /// <summary>
     /// If true, the job gets destroied by changing the scene.

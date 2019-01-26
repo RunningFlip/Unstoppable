@@ -23,9 +23,7 @@ GameObject:
   - component: {fileID: 114312005067908046}
   - component: {fileID: 114586060090732504}
   - component: {fileID: 114661180343582328}
-  - component: {fileID: 114567557933925284}
-  - component: {fileID: 114532407075362958}
-  - component: {fileID: 114446245281425894}
+  - component: {fileID: 114148171173026976}
   m_Layer: 0
   m_Name: GasPlanet
   m_TagString: Untagged
@@ -102,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1263251827887960}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.7, y: 18.8, z: -0.71387416}
+  m_LocalPosition: {x: 48.28, y: 0.94, z: -0.71387416}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4396392325752850}
@@ -160,6 +158,21 @@ CircleCollider2D:
   m_Offset: {x: 0.27, y: 0.2}
   serializedVersion: 2
   m_Radius: 7.5
+--- !u!114 &114148171173026976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263251827887960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyable: 1
+  dangerous: 0
+  planetCollider: {fileID: 58331591765889792}
+  orbitCollider: {fileID: 58654407362123156}
 --- !u!114 &114173688146786864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,18 +216,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionComponent: {fileID: 114586060090732504}
---- !u!114 &114446245281425894
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1263251827887960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbitCollider: {fileID: 58654407362123156}
 --- !u!114 &114455381120396196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,30 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e343c97a9c345a4e9bacde958baa802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114532407075362958
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1263251827887960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbitCollider: {fileID: 58654407362123156}
---- !u!114 &114567557933925284
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1263251827887960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbitCollider: {fileID: 58654407362123156}
 --- !u!114 &114586060090732504
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -31,11 +31,11 @@ public class ItemCollectorComponent : EntityComponent
     /// </summary>
     private void CheckCollision()
     {
-        if (collisionComponent.lastCollision.CompareTag("Item"))
+        if (collisionComponent.lastCollisionObject.CompareTag("Item"))
         {
             //TODO --> what item was found????
 
-            ItemHolderComponent itemHolder = collisionComponent.lastCollision.GetComponent<ItemHolderComponent>();
+            ItemHolderComponent itemHolder = collisionComponent.lastCollisionObject.GetComponent<ItemHolderComponent>();
 
             if (itemHolder != null)
             {

@@ -13,13 +13,17 @@ public class CollisionComponent : EntityComponent
 
     //Last collision object
     [NonSerialized]
-    public GameObject lastCollision;
-    private GameObject backupCollision;
+    public GameObject lastCollisionObject;
+    private GameObject backupCollisionObject;
+    [NonSerialized]
+    public Collision2D collision;
 
     //Last trigger object
     [NonSerialized]
-    public GameObject lastTrigger;
-    private GameObject backupTrigger;
+    public GameObject lastTriggerObject;
+    private GameObject backupTriggerObject;
+    [NonSerialized]
+    public Collider2D trigger;
 
     //Event
     public SimpleEvent onCollision = new SimpleEvent();
@@ -34,20 +38,20 @@ public class CollisionComponent : EntityComponent
 
     public override void UpdateComponent()
     {
-        if (listenToCollisions && lastCollision != null)
+        if (listenToCollisions && lastCollisionObject != null)
         {
-            if (lastCollision != backupCollision)
+            if (lastCollisionObject != backupCollisionObject)
             {
-                backupCollision = lastCollision;
+                backupCollisionObject = lastCollisionObject;
                 onCollision.Invoke();
             }
         }
 
-        if (listenToTriggers && lastTrigger != null)
+        if (listenToTriggers && lastTriggerObject != null)
         {
-            if (lastTrigger != backupTrigger)
+            if (lastTriggerObject != backupTriggerObject)
             {
-                backupTrigger = lastTrigger;
+                backupTriggerObject = lastTriggerObject;
                 onTrigger.Invoke();
             }
         }

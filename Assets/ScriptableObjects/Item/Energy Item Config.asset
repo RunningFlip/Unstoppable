@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d165e39815fc545b4f53d9ed05d39e, type: 3}
   m_Name: Energy Item Config
   m_EditorClassIdentifier: 
-  energy: 50
+  energy: 20

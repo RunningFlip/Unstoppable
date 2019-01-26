@@ -12,9 +12,12 @@ public class DashComponent : EntityComponent
     [Header("Dash values")]
     public float dashForce;
     public float cooldown;
-    public float requiredEnergy;
+    public int requiredEnergy;
     public float gravityForbiddenTime;
 
+
+    //Flag
+    public bool inReset;
 
     //Time
     private float lastTimeStamp = -float.MaxValue;
@@ -28,10 +31,6 @@ public class DashComponent : EntityComponent
 
     //Camera
     private Camera mainCamera;
-
-    //Job
-    private WaitJob resetJob;
-
 
 
     public override void InitializeComponent()
@@ -73,6 +72,15 @@ public class DashComponent : EntityComponent
                 }
             }
         }
+
+        if (inReset)
+        {
+            if (lastTimeStamp + gravityForbiddenTime < Time.time)
+            {
+                inReset = false;
+                stateComponent.SetState(StateType.ExternalGravity, true);
+            }
+        }
     }
 
 
@@ -82,8 +90,17 @@ public class DashComponent : EntityComponent
     /// </summary>
     private void Dash()
     {
+        if (inReset)
+        {
+            inReset = false;
+            stateComponent.SetState(StateType.ExternalGravity, true);
+        }
+
+        //State
+        inReset = true;
         stateComponent.SetState(StateType.ExternalGravity, false);
 
+        //Free dash
         lastTimeStamp = Time.time;
         if (!freeDash) energyComponent.currentEnergy -= requiredEnergy;
         else
@@ -92,20 +109,9 @@ public class DashComponent : EntityComponent
             circleComponent.reset = true;
         }
 
+        //Force
         float mag = rbody.velocity.magnitude;
         if (mag == 0) mag = 10;
         rbody.AddForce((mainCamera.ScreenToWorldPoint(Input.mousePosition) - mappingComponent.movementTransform.position).normalized * mag * dashForce);
-
-        //Job
-        if (resetJob != null)
-        {
-            stateComponent.SetState(StateType.ExternalGravity, true);
-            resetJob.CancelJob();
-        }
-
-        resetJob = new WaitJob(delegate 
-        {
-            stateComponent.SetState(StateType.ExternalGravity, true);
-        }, gravityForbiddenTime);
     }
 }
