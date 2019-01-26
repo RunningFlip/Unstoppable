@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 114704746988226670}
   - component: {fileID: 114805107238912122}
   - component: {fileID: 114717702512826656}
+  - component: {fileID: 114805727370315754}
   m_Layer: 0
   m_Name: DestroyedPlanet
   m_TagString: Untagged
@@ -213,7 +214,7 @@ MonoBehaviour:
   circleCollider: {fileID: 58119075916331516}
   attractionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!114 &114805107238912122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,6 +228,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listenToCollisions: 1
   listenToTriggers: 1
+--- !u!114 &114805727370315754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1711781959106982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbitCollider: {fileID: 58119075916331516}
 --- !u!114 &114978380410281794
 MonoBehaviour:
   m_ObjectHideFlags: 1

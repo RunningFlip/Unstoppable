@@ -14,6 +14,9 @@ public class EnergyComponent : EntityComponent
     public float currentEnergy;
     private float lastEnergy;
 
+    [Header("Collision")]
+    public float energyMalus;
+
     [Header("Audio")]
     public float volume;
     public AudioClip deathAudioClip;
@@ -25,6 +28,8 @@ public class EnergyComponent : EntityComponent
 
     //Components
     private StateComponent stateComponent;
+    private CollisionComponent collisionComponent;
+    private Rigidbody2D rbody;
 
     //Event
     public SimpleEvent onMaxHealthChanged = new SimpleEvent();
@@ -37,6 +42,7 @@ public class EnergyComponent : EntityComponent
         updateType = UpdateType.Update;
 
         //Health
+        energyMalus = GameController.Instance.GameParameter.energyMalus;
         maxEnergy = GameController.Instance.GameParameter.maxEnergy;
         currentEnergy = maxEnergy;
         lastMaxEnergy = maxEnergy;
@@ -44,6 +50,11 @@ public class EnergyComponent : EntityComponent
 
         //Components
         stateComponent = GetComponent<StateComponent>();
+        collisionComponent = GetComponent<CollisionComponent>();
+        rbody = GetComponent<MappingComponent>().rbody;
+
+        //Event
+        collisionComponent.onCollision.AddListener(delegate { CheckCollision(); });
     }
 
 
@@ -63,12 +74,22 @@ public class EnergyComponent : EntityComponent
         {
             lastEnergy = currentEnergy;
 
-            if (currentEnergy > maxEnergy)
-            {
-                currentEnergy = maxEnergy;
-            }
+            if (currentEnergy > maxEnergy) currentEnergy = maxEnergy;
+            if (currentEnergy < 0) currentEnergy = 0;
 
             onCurrentHealthChanged.Invoke();
+        }
+    }
+
+
+    /// <summary>
+    /// Checks if the entity collides with an planet and decreases the energy value.
+    /// </summary>
+    private void CheckCollision()
+    {
+        if (collisionComponent.lastCollision.CompareTag("Planet"))
+        {
+            currentEnergy -= (rbody.velocity.magnitude * energyMalus);
         }
     }
 

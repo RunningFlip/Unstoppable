@@ -19,7 +19,6 @@ public class CircleComponent : EntityComponent
 
     //Vectors
     private Vector3 pivot;
-    private Vector3 nullVec = Vector2.zero;
 
     //Components
     private MappingComponent mappingComponent;
@@ -27,6 +26,9 @@ public class CircleComponent : EntityComponent
     private DashComponent dashComponent;
     private Transform trans;
     private Rigidbody2D rbody;
+
+    //Other components
+    private PlanetComponent currentPlanet;
 
     //Camera
     private Camera mainCamera;
@@ -61,7 +63,7 @@ public class CircleComponent : EntityComponent
         }
 
         //Init
-        if (tryCircle && !inCircle)
+        if (tryCircle)
         {
             tryCircle = false;         
             TryToCircle();
@@ -91,7 +93,9 @@ public class CircleComponent : EntityComponent
             if (DistanceIsValid(trans.position, mappings.movementTransform.position, rad))
             {
                 inCircle = true;
-                //rbody.velocity = nullVec;
+                currentPlanet = mappings.GetComponent<PlanetComponent>();;
+
+                currentPlanet.onDeath.AddListener(ResetParameter);
                 SetVariables(ref mappings);
             }
             else
@@ -163,6 +167,10 @@ public class CircleComponent : EntityComponent
             stateComponent.SetState(StateType.ExternalGravity, true);
             stateComponent.SetState(StateType.Movement, true);
         }
+
+        currentPlanet.onDeath.RemoveListener(ResetParameter);
+        currentPlanet = null;
+
         inCircle = false;
     }
 }

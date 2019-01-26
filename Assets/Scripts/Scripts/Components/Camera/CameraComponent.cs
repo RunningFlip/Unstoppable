@@ -32,7 +32,7 @@ public class CameraComponent : EntityComponent
 
     public override void UpdateComponent()
     {
-        if (!follow) return;
+        if (!follow || followedObject == null) return;
 
         moveVector.x = followedObject.position.x;
         moveVector.y = followedObject.position.y;

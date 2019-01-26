@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 114495059226566012}
   - component: {fileID: 114211235026775018}
   - component: {fileID: 114647363746762168}
+  - component: {fileID: 114225518362885108}
   m_Layer: 0
   m_Name: RedDwarf
   m_TagString: Untagged
@@ -249,6 +250,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listenToCollisions: 1
   listenToTriggers: 1
+--- !u!114 &114225518362885108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900372041941894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbitCollider: {fileID: 58516274767599436}
 --- !u!114 &114495059226566012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,7 +295,7 @@ MonoBehaviour:
   circleCollider: {fileID: 58516274767599436}
   attractionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!114 &114833739886436108
 MonoBehaviour:
   m_ObjectHideFlags: 1

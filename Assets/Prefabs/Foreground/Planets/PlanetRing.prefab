@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 114158557752651390}
   - component: {fileID: 114074257993168984}
   - component: {fileID: 114470452910471730}
+  - component: {fileID: 114899072286577746}
   m_Layer: 0
   m_Name: PlanetRing
   m_TagString: Untagged
@@ -215,7 +216,7 @@ MonoBehaviour:
   circleCollider: {fileID: 58796730545163044}
   attractionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!114 &114583076089815718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -239,6 +240,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionComponent: {fileID: 114074257993168984}
+--- !u!114 &114899072286577746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1410856740354484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbitCollider: {fileID: 58796730545163044}
 --- !u!212 &212166383038905536
 SpriteRenderer:
   m_ObjectHideFlags: 1

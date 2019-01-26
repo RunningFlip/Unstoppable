@@ -97,7 +97,12 @@ public class DashComponent : EntityComponent
         rbody.AddForce((mainCamera.ScreenToWorldPoint(Input.mousePosition) - mappingComponent.movementTransform.position).normalized * mag * dashForce);
 
         //Job
-        if (resetJob != null) resetJob.CancelJob();
+        if (resetJob != null)
+        {
+            stateComponent.SetState(StateType.ExternalGravity, true);
+            resetJob.CancelJob();
+        }
+
         resetJob = new WaitJob(delegate 
         {
             stateComponent.SetState(StateType.ExternalGravity, true);

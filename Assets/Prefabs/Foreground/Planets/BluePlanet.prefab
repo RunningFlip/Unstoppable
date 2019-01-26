@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 114682000791924274}
   - component: {fileID: 114401829473653090}
   - component: {fileID: 114648175069851420}
+  - component: {fileID: 114737015095566904}
   m_Layer: 0
   m_Name: BluePlanet
   m_TagString: Untagged
@@ -207,7 +208,7 @@ MonoBehaviour:
   circleCollider: {fileID: 58358214901826360}
   attractionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!114 &114682000791924274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,6 +228,18 @@ MonoBehaviour:
   rbody: {fileID: 50599315279518904}
   colliders:
   - {fileID: 58243281023152402}
+--- !u!114 &114737015095566904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1206027341629126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbitCollider: {fileID: 58358214901826360}
 --- !u!114 &114932865297949506
 MonoBehaviour:
   m_ObjectHideFlags: 1

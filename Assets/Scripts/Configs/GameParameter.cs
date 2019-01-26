@@ -24,4 +24,5 @@ public class GameParameter : ScriptableObject
 
     [Header("Player Hard Breach")]
     public float minHardBreach;
+    public float energyMalus;
 }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 
 
 /// <summary>
@@ -66,7 +65,6 @@ public class MovementComponent : EntityComponent
         if (rbody.velocity.magnitude < currentMagnitudeCap)
         {
             rbody.AddForce(currentDirection * forceMultiplier);
-            movementTransform.up = currentDirection; //Rotation
         }
     }
 

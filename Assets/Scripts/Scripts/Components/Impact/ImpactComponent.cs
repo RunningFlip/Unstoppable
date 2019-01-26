@@ -8,12 +8,13 @@ public class ImpactComponent : EntityComponent
     public float minHardBreach;
 
     //Flag
-    //[NonSerialized]
+    [NonSerialized]
     public bool hardBreachEnabled;
     private bool hardBreachBackLog;
 
     //Component
     private CollisionComponent collisionComponent;
+    private EnergyComponent energyComponent;
     private Rigidbody2D rbody;
 
     //Job
@@ -29,6 +30,7 @@ public class ImpactComponent : EntityComponent
 
         //Components
         collisionComponent = GetComponent<CollisionComponent>();
+        energyComponent = GetComponent<EnergyComponent>();
         rbody = GetComponent<MappingComponent>().rbody;
 
         //Event
@@ -76,8 +78,13 @@ public class ImpactComponent : EntityComponent
     {
         if (collisionComponent.lastCollision.CompareTag("Planet"))
         {
-            DeathSimpleComponent.AddDeathSimpleComponent(collisionComponent.lastCollision.GetComponent<EntityLink>().entityController);
-            rbody.AddForce(-rbody.velocity / 2);
+            PlanetComponent planet = collisionComponent.lastCollision.GetComponent<EntityLink>().entityController.GetComponent<PlanetComponent>();
+
+            if (planet.destroyable && !planet.dangerous)
+            {
+                DeathSimpleComponent.AddDeathSimpleComponent(collisionComponent.lastCollision.GetComponent<EntityLink>().entityController);
+                rbody.AddForce(-rbody.velocity / 2);
+            }
         }
     }
 

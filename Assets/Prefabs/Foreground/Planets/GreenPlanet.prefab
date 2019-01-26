@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 114694411175903442}
   - component: {fileID: 114544057635051270}
   - component: {fileID: 114188476494822836}
+  - component: {fileID: 114385884215736522}
   m_Layer: 0
   m_Name: GreenPlanet
   m_TagString: Untagged
@@ -171,7 +172,19 @@ MonoBehaviour:
   circleCollider: {fileID: 58655887215495714}
   attractionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
+--- !u!114 &114385884215736522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1647983976275910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbitCollider: {fileID: 58655887215495714}
 --- !u!114 &114445343570593126
 MonoBehaviour:
   m_ObjectHideFlags: 1
