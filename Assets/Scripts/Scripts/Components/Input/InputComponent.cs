@@ -18,6 +18,7 @@ public class InputComponent : EntityComponent
 
     //Components
     private DashComponent dashComponent;
+    private CircleComponent circleComponent;
     private InteractComponent interactComponent;
 
 
@@ -30,6 +31,7 @@ public class InputComponent : EntityComponent
 
         //Components
         dashComponent = GetComponent<DashComponent>();
+        circleComponent = GetComponent<CircleComponent>();
         interactComponent = GetComponent<InteractComponent>();
     }
 
@@ -42,6 +44,10 @@ public class InputComponent : EntityComponent
         if (actionSet.dash.WasPressed)
         {
             dashComponent.dash = true;
+        }
+        if (actionSet.select.WasPressed)
+        {
+            circleComponent.tryCircle = true;
         }
         if (actionSet.interact.WasPressed)
         {

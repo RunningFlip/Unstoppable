@@ -4,6 +4,7 @@
 public enum StateType
 {
     Movement,
+    Dash,
     ExternalGravity,
     Interacting,
     Damageable,

@@ -16,7 +16,7 @@ public class AttractionComponent : EntityComponent
     private Vector3 pivot;
 
     //Collections
-    public Collider2D[] collidersInOrbit;
+    private Collider2D[] collidersInOrbit;
 
     
     public override void InitializeComponent()

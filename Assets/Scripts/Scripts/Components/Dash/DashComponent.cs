@@ -6,6 +6,8 @@ public class DashComponent : EntityComponent
 {
     [NonSerialized]
     public bool dash;
+    [NonSerialized]
+    public bool freeDash;
 
     [Header("Dash values")]
     public float dashForce;
@@ -18,9 +20,14 @@ public class DashComponent : EntityComponent
     private float lastTimeStamp = -float.MaxValue;
 
     //Components
+    private MappingComponent mappingComponent;
     private EnergyComponent energyComponent;
+    private CircleComponent circleComponent;
     private StateComponent stateComponent;
     private Rigidbody2D rbody;
+
+    //Camera
+    private Camera mainCamera;
 
     //Job
     private WaitJob resetJob;
@@ -38,15 +45,20 @@ public class DashComponent : EntityComponent
         gravityForbiddenTime = GameController.Instance.GameParameter.dashGravityForbiddenTime;
 
         //Components
+        mappingComponent = GetComponent<MappingComponent>();
         energyComponent = GetComponent<EnergyComponent>();
+        circleComponent = GetComponent<CircleComponent>();
         stateComponent = GetComponent<StateComponent>();
-        rbody = GetComponent<MappingComponent>().rbody;
+        rbody = mappingComponent.rbody;
+
+        //Camera
+        mainCamera = Camera.main;
     }
 
 
     public override void UpdateComponent()
     {
-        if (!stateComponent.StateIsEnabled(StateType.Movement)) return;
+        if (!stateComponent.StateIsEnabled(StateType.Dash)) return;
 
         //Dash
         if (dash)
@@ -55,7 +67,7 @@ public class DashComponent : EntityComponent
 
             if (lastTimeStamp + cooldown < Time.time)
             {
-                if (energyComponent.currentEnergy >= requiredEnergy)
+                if (freeDash || energyComponent.currentEnergy >= requiredEnergy)
                 {
                     Dash();
                 }
@@ -73,9 +85,16 @@ public class DashComponent : EntityComponent
         stateComponent.SetState(StateType.ExternalGravity, false);
 
         lastTimeStamp = Time.time;
-        energyComponent.currentEnergy -= requiredEnergy;
+        if (!freeDash) energyComponent.currentEnergy -= requiredEnergy;
+        else
+        {
+            freeDash = false;
+            circleComponent.reset = true;
+        }
 
-        rbody.AddForce(rbody.velocity * dashForce);
+        float mag = rbody.velocity.magnitude;
+        if (mag == 0) mag = 10;
+        rbody.AddForce((mainCamera.ScreenToWorldPoint(Input.mousePosition) - mappingComponent.movementTransform.position).normalized * mag * dashForce);
 
         //Job
         if (resetJob != null) resetJob.CancelJob();
