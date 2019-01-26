@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 114160212921580678}
   - component: {fileID: 114788179251823970}
   m_Layer: 0
-  m_Name: GreenPlanet
+  m_Name: ForestPlanet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
