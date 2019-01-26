@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114717702512826656}
   m_Layer: 0
   m_Name: DestroyedPlanet
-  m_TagString: Planet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,9 +59,9 @@ GameObject:
   - component: {fileID: 50513737161778424}
   - component: {fileID: 114661502457228630}
   - component: {fileID: 114978380410281794}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,9 +154,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.25, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 2.3
 --- !u!114 &114103290506879636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,7 +211,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 58119075916331516}
-  hittedColliders: []
+  attractionMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114805107238912122
 MonoBehaviour:
   m_ObjectHideFlags: 1

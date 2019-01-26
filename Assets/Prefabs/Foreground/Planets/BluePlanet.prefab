@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114648175069851420}
   m_Layer: 0
   m_Name: BluePlanet
-  m_TagString: Planet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,9 +59,9 @@ GameObject:
   - component: {fileID: 50599315279518904}
   - component: {fileID: 114114152813277318}
   - component: {fileID: 114932865297949506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,9 +139,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.06, y: 0.13}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 2
 --- !u!58 &58358214901826360
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -205,7 +205,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 58358214901826360}
-  hittedColliders: []
+  attractionMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114682000791924274
 MonoBehaviour:
   m_ObjectHideFlags: 1
