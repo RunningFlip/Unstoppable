@@ -15,6 +15,9 @@ public class PlanetComponent : EntityComponent
     private const float harvestConst = 6f;
     private const int bonus = 5;
 
+    [Header("Death")]
+    public PlanetDeathType planetDeathType = PlanetDeathType.Normal_Death;
+
     [Header("Planet Colliders")]
     public CircleCollider2D planetCollider;
     public CircleCollider2D orbitCollider;
