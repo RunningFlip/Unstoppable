@@ -67,39 +67,7 @@ public class EnergyComponent : EntityComponent
         {
             lastEnergy = currentEnergy;
             onCurrentHealthChanged.Invoke();
-
-            if (currentEnergy <= 0)
-            {
-                isDead = true;
-                onDeath.Invoke();
-                OnDeath();
-            }
         }
-    }
-
-
-    private void OnDeath()
-    {
-        //Set statecomponent
-        stateComponent.SetState(StateType.Everything, false);
-
-        //Disables colliders
-        for (int i = 0; i < mappingComponent.colliders.Length; i++)
-        {
-            mappingComponent.colliders[i].isTrigger = true;
-        }
-
-        //Audio
-        if (deathAudioClip != null)
-        {
-            AudioSource.PlayClipAtPoint(deathAudioClip, mappingComponent.movementTransform.position, volume);
-        }
-
-        //Animation
-        animationComponent.death = true;
-
-        //Adds a DeathSimpleComponent to the entity
-        DeathSimpleComponent.AddDeathSimpleComponent(GetComponent<EntityController>(), DeathType.Disable);
     }
 
 

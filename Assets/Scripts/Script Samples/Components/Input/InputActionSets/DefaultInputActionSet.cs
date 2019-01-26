@@ -11,12 +11,11 @@ public class DefaultInputActionSet : PlayerActionSet
     public PlayerTwoAxisAction movement;
 
     //Actions
-    public PlayerAction attack;
-    public PlayerAction dodge;
+    public PlayerAction dash;
     public PlayerAction interact;
 
     //General
-    public PlayerAction contextMenu;
+    public PlayerAction radar;
 
 
 
@@ -33,12 +32,11 @@ public class DefaultInputActionSet : PlayerActionSet
         movement = CreateTwoAxisPlayerAction(moveLeft, moveRight, moveDown, moveUp);
 
         //Actions
-        attack = CreatePlayerAction("Attack");
-        dodge = CreatePlayerAction("Dodge");
+        dash = CreatePlayerAction("Dash");
         interact = CreatePlayerAction("Interact");
 
         //General
-        contextMenu = CreatePlayerAction("Context Menu");
+        radar = CreatePlayerAction("Radar");
 
         //Add bindings
         AddDefaultKeyboardAndMouseBindings();
@@ -57,12 +55,11 @@ public class DefaultInputActionSet : PlayerActionSet
         moveRight.AddDefaultBinding(Key.D);
 
         //Actions
-        attack.AddDefaultBinding(Mouse.LeftButton);
-        dodge.AddDefaultBinding(Key.Space);
+        dash.AddDefaultBinding(Mouse.LeftButton);
         interact.AddDefaultBinding(Key.F);
 
         //General
-        contextMenu.AddDefaultBinding(Key.Escape);
+        radar.AddDefaultBinding(Key.E);
     }
 
 }

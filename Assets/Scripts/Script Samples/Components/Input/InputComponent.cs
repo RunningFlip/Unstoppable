@@ -18,7 +18,7 @@ public class InputComponent : EntityComponent
 
     //Components
     private MovementComponent movementComponent;
-    private AttackComponent attackComponent;
+    private DashComponent dashComponent;
     private InteractComponent interactComponent;
 
 
@@ -31,7 +31,7 @@ public class InputComponent : EntityComponent
 
         //Components
         movementComponent = GetComponent<MovementComponent>();
-        attackComponent = GetComponent<AttackComponent>();
+        dashComponent = GetComponent<DashComponent>();
         interactComponent = GetComponent<InteractComponent>();
     }
 
@@ -40,25 +40,10 @@ public class InputComponent : EntityComponent
     {
         if (!readInput) return;
 
-
-        //Player movement-----------------------------------------------------
-        /*
-        if (actionSet.movement.IsPressed)                                           //Movement
-        {
-            newDirection = new Vector2(actionSet.movement.X, actionSet.movement.Y);
-            newDirection = newDirection.normalized;
-            movementComponent.currentDirection = newDirection;
-        }
-        */
-
         //Actions-------------------------------------------------------------
-        if (actionSet.attack.WasPressed)
+        if (actionSet.dash.WasPressed)
         {
-            attackComponent.attack = true;
-        }
-        if (actionSet.dodge.WasPressed)
-        {
-            Debug.Log("Dodge was pressed!");
+            dashComponent.dash = true;
         }
         if (actionSet.interact.WasPressed)
         {
@@ -67,7 +52,7 @@ public class InputComponent : EntityComponent
         }
 
         //General-------------------------------------------------------------
-        if (actionSet.contextMenu.WasPressed)
+        if (actionSet.radar.WasPressed)
         {
             Debug.Log("Context Menu was toggled!");
         }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 
 /// <summary>
@@ -13,6 +14,10 @@ public class MovementComponent : EntityComponent
 
     //Floats
     private float forceMagnitudeCap;
+    private float currentMagnitudeCap; 
+
+    //Vectors
+    private Vector3 mousePos;
 
     //Components
     private StateComponent stateComponent;
@@ -29,6 +34,7 @@ public class MovementComponent : EntityComponent
 
         //Components
         stateComponent = GetComponent<StateComponent>();
+
         MappingComponent mapping = GetComponent<MappingComponent>();
         rbody = mapping.rbody;
         movementTransform = mapping.movementTransform;
@@ -38,6 +44,7 @@ public class MovementComponent : EntityComponent
         forceMagnitudeCap = GameController.Instance.GameParameter.forceMagnitudeCap;
         rbody.drag = GameController.Instance.GameParameter.linearDrag;
         rbody.angularDrag = GameController.Instance.GameParameter.angularDrag;
+        currentMagnitudeCap = forceMagnitudeCap;
 
         //Camera
         mainCamera = Camera.main;
@@ -48,14 +55,17 @@ public class MovementComponent : EntityComponent
     {
         if (!stateComponent.StateIsEnabled(StateType.Movement)) return;
 
+        //Mouseposition
+        mousePos = Input.mousePosition;
+
         //Get current direction
         currentDirection = GetMoveDirection();
 
         //Force
-        if (rbody.velocity.magnitude < forceMagnitudeCap)
+        if (rbody.velocity.magnitude < currentMagnitudeCap)
         {
-            rbody.AddForce(currentDirection * forceMultiplier, ForceMode2D.Force);
-            movementTransform.up = rbody.velocity; //Rotation
+            rbody.AddForce(currentDirection * forceMultiplier);
+            movementTransform.up = currentDirection; //Rotation
         }
     }
 
@@ -66,7 +76,7 @@ public class MovementComponent : EntityComponent
     /// <returns></returns>
     private Vector2 GetMoveDirection()
     {
-        return (Input.mousePosition - mainCamera.WorldToScreenPoint(movementTransform.position)).normalized;
+        return (mousePos - mainCamera.WorldToScreenPoint(movementTransform.position)).normalized;
     }
 
 }
