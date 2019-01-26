@@ -321,7 +321,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 619220165}
-  hittedColliders: []
+  attractionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  collidersInOrbit: []
 --- !u!114 &249413574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,7 +433,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 1541607644}
-  hittedColliders: []
+  attractionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  collidersInOrbit: []
 --- !u!1 &390030363
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,9 +476,9 @@ GameObject:
   - component: {fileID: 439665212}
   - component: {fileID: 439665211}
   - component: {fileID: 439665210}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
-  m_TagString: Item
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,12 +517,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.2
 --- !u!212 &439665212
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -611,7 +617,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -806,7 +812,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 1751059792}
-  hittedColliders: []
+  attractionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  collidersInOrbit: []
 --- !u!114 &825950533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,7 +986,7 @@ GameObject:
   - component: {fileID: 1279599054}
   - component: {fileID: 1279599058}
   - component: {fileID: 1279599059}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -1454,11 +1463,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1845162764}
+  - component: {fileID: 1845162765}
   - component: {fileID: 1845162763}
+  - component: {fileID: 1845162766}
   - component: {fileID: 1845162762}
   m_Layer: 0
   m_Name: EnergyContainer
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1500,6 +1511,45 @@ Transform:
   m_Father: {fileID: 1509364996}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1845162765
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1845162761}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1845162766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1845162761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f990c321e640d49b0d2a993006824b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementTransform: {fileID: 1845162764}
+  spriteRenderer:
+  - {fileID: 439665212}
+  animator: {fileID: 0}
+  hitbox: {fileID: 0}
+  rbody: {fileID: 1845162765}
+  colliders:
+  - {fileID: 439665211}
 --- !u!1 &1909803517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,14 +1562,15 @@ GameObject:
   - component: {fileID: 1909803525}
   - component: {fileID: 1909803524}
   - component: {fileID: 1909803523}
+  - component: {fileID: 1909803529}
   - component: {fileID: 1909803522}
-  - component: {fileID: 1909803521}
   - component: {fileID: 1909803520}
+  - component: {fileID: 1909803521}
   - component: {fileID: 1909803519}
   - component: {fileID: 1909803528}
-  - component: {fileID: 1909803529}
   - component: {fileID: 1909803526}
   - component: {fileID: 1909803530}
+  - component: {fileID: 1909803531}
   m_Layer: 0
   m_Name: Player Entity
   m_TagString: Player
@@ -1659,10 +1710,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330d3040cf663554e8cedd5f20ff1dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashForce: 120
-  cooldown: 2
-  requiredEnergy: 20
-  gravityForbiddenTime: 2
+  dashForce: 0
+  cooldown: 0
+  requiredEnergy: 0
+  gravityForbiddenTime: 0
 --- !u!4 &1909803527
 Transform:
   m_ObjectHideFlags: 0
@@ -1714,6 +1765,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbadd17f576866e4581ab83989ffbeb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1909803531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1909803517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f93d96339cef2d4c81e961dbfadc139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minHardBreach: 0
 --- !u!1 &2067284333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,4 +1914,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 0

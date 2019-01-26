@@ -12,6 +12,7 @@ public class MovementComponent : EntityComponent
     public Vector2 currentDirection;
     public float forceMultiplier;
 
+
     //Floats
     private float forceMagnitudeCap;
     private float currentMagnitudeCap; 

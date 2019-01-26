@@ -16,3 +16,8 @@ MonoBehaviour:
   forceMagnitudeCap: 20
   linearDrag: 0.7
   angularDrag: 0.5
+  dashForce: 120
+  dashCoolDown: 2
+  dashRequiredEnergy: 20
+  dashGravityForbiddenTime: 2
+  minHardBreach: 30

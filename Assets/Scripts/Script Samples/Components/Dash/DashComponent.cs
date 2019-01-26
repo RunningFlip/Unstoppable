@@ -31,6 +31,12 @@ public class DashComponent : EntityComponent
     {
         updateType = UpdateType.Update;
 
+        //Parameters
+        dashForce = GameController.Instance.GameParameter.dashForce;
+        cooldown = GameController.Instance.GameParameter.dashCoolDown;
+        requiredEnergy = GameController.Instance.GameParameter.dashRequiredEnergy;
+        gravityForbiddenTime = GameController.Instance.GameParameter.dashGravityForbiddenTime;
+
         //Components
         energyComponent = GetComponent<EnergyComponent>();
         stateComponent = GetComponent<StateComponent>();
