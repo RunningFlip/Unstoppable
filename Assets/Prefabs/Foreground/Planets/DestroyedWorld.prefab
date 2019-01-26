@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114586060090732504}
   - component: {fileID: 114661180343582328}
   m_Layer: 0
-  m_Name: GasPlanet
+  m_Name: DestroyedWorld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
