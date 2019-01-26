@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Lava
+  m_Name: Red Dwarf
   m_Shader: {fileID: 4800000, guid: bc7283511d1f1ea43a2916edf8c88732, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -23,7 +23,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 44e8b461e23777241b9e209ec8aab80d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 464061c933033de4f85334680c528a77, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap2:
@@ -47,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 35be0c0c6c2c6784983c0adc238461c3, type: 3}
+        m_Texture: {fileID: 2800000, guid: ccdd015f4a97f7e4b8a16cfffe927fd5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

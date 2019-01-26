@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Lava
+  m_Name: GasPlanet
   m_Shader: {fileID: 4800000, guid: bc7283511d1f1ea43a2916edf8c88732, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -23,11 +23,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 44e8b461e23777241b9e209ec8aab80d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0c23a060080c237438bf56679f490c32, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap2:
-        m_Texture: {fileID: 2800000, guid: 744f1839580080348865f3ac54f2e8ae, type: 3}
+        m_Texture: {fileID: 2800000, guid: d2742dae4e6e07445be8c9925f7a3613, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -47,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 35be0c0c6c2c6784983c0adc238461c3, type: 3}
+        m_Texture: {fileID: 2800000, guid: f7f49942426f06743854d72a5ac4457a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
