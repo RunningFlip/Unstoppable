@@ -13,10 +13,18 @@ public class DamageReceiverComponent : EntityComponent
     public override void InitializeComponent()
     {
         //Entity
-        entityController = GetComponent<EntityController>();
+        EntityLink link = GetComponent<EntityLink>();
+        if (link == null)
+        {
+            entityController = GetComponent<EntityController>();
+        }
+        else
+        {
+            entityController = link.entityController;
+        }
 
         //Components
-        collisionComponent = GetComponent<CollisionComponent>();
+        collisionComponent = entityController.GetComponent<CollisionComponent>();
 
         //Event
         collisionComponent.onCollision.AddListener(CheckCollision);

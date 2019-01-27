@@ -18,8 +18,8 @@ MonoBehaviour:
   angularDrag: 1.2
   circleRotateSpeed: 100
   harvestInterval: 0.2
-  dashForce: 100
-  dashCoolDown: 1.5
+  dashForce: 110
+  dashCoolDown: 0.8
   dashRequiredEnergy: 5
   dashGravityForbiddenTime: 2
   minHardBreach: 20

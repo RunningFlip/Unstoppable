@@ -39,12 +39,15 @@ public class EnergyComponent : EntityComponent
     {
         updateType = UpdateType.Update;
 
-        //Health
+        //Energy
         energyMalus = GameController.Instance.GameParameter.energyMalus;
         maxEnergy = GameController.Instance.GameParameter.maxEnergy;
         currentEnergy = maxEnergy;
         lastMaxEnergy = maxEnergy;
         lastEnergy = currentEnergy;
+
+        //Setup
+        GUIController.Instance.UpdateBranchNodes(currentEnergy, maxEnergy);
 
         //Components
         stateComponent = GetComponent<StateComponent>();
@@ -69,6 +72,8 @@ public class EnergyComponent : EntityComponent
 
             if (currentEnergy > maxEnergy) currentEnergy = maxEnergy;
             if (currentEnergy < 0) currentEnergy = 0;
+
+            GUIController.Instance.UpdateBranchNodes(currentEnergy, maxEnergy);
 
             onCurrentHealthChanged.Invoke();
         }
