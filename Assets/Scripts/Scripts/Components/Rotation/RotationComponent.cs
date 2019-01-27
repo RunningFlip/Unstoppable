@@ -42,7 +42,7 @@ public class RotationComponent : EntityComponent
         mousePos = Input.mousePosition;
 
         //Rotation
-        movementTransform.up = GetMoveDirection(); //Rotation
+        movementTransform.up = Vector2.Lerp(movementTransform.up, GetMoveDirection(), 0.2f); //Rotation
     }
 
 

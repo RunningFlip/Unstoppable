@@ -68,6 +68,7 @@ public class PlanetComponent : EntityComponent
             case PlanetDeathType.Harvest_Death:
                 if (dangerous)
                 {
+                    Instantiate(deathParticlePrefab, planetCollider.transform.position, Quaternion.identity);
                     Instantiate(blackHolePrefab, planetCollider.transform.position, Quaternion.identity);
                 }
                 else

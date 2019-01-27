@@ -206,7 +206,7 @@ MonoBehaviour:
   energyBonus: 0
   energyStorage: 0
   energyStorageStart: 0
-  planetDeathType: 0
+  planetDeathType: 1
   planetCollider: {fileID: 58049636784317156}
   orbitCollider: {fileID: 58137112368986324}
 --- !u!114 &114555897213987412
