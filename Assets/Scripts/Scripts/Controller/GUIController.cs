@@ -30,10 +30,10 @@ public class GUIController : MonoBehaviour
         if (Instance == null) Instance = this;
 
         //Buttons
-        startGameButton.onClick.AddListener(delegate { StartGame(); });
-        quitGameButton.onClick.AddListener(delegate { Application.Quit(); });
+        //startGameButton.onClick.AddListener(delegate { StartGame(); });
+        //quitGameButton.onClick.AddListener(delegate { Application.Quit(); });
 
-        StartGame(); //TODO HAS TO BE REMOVED!
+        //StartGame(); //TODO HAS TO BE REMOVED!
     }
 
     /// <summary>
