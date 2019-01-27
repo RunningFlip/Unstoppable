@@ -9,6 +9,7 @@ TagManager:
   - PlanetOrbit
   - Selectable
   - Item
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
+using System;
 
 
 public class PlanetComponent : EntityComponent
 {
     [Header("Planet Attributes")]
-    public bool destroyable;
-    public bool dangerous;
+    public bool destroyable;  
     public bool harvestable;
+    [NonSerialized]
+    public bool dangerous;
 
     [Header("Harvest")]
     public int energyBonus;
@@ -31,6 +33,8 @@ public class PlanetComponent : EntityComponent
 
     public override void InitializeComponent()
     {
+        dangerous = GetComponent<DamageEmitterComponent>();
+
         //Values
         energyBonus = (int)(bonus * planetCollider.radius);
         energyStorage = (int)(harvestConst * planetCollider.radius);
