@@ -59,10 +59,6 @@ public class GameController : MonoBehaviour
         //Setup
         InitTargets();
         inputComponent.readInput = true;
-        navigatonComponent.currentTraget = targetList[0].transform;
-
-        //Start
-        //SetTargets();
     }
 
 
@@ -105,6 +101,7 @@ public class GameController : MonoBehaviour
                 planets = planets.ToList();
             }
         }
+        navigatonComponent.targets = targetList;
     }
 
 
@@ -119,7 +116,6 @@ public class GameController : MonoBehaviour
             receiverComponent.onDeath.RemoveListener(delegate { EndGame(true); });
             EndGame(true);
         });
-        navigatonComponent.currentTraget = lastTarget.transform;
     }
 
 

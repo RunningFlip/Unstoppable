@@ -18,15 +18,23 @@ public class DeathSimpleComponent : EntityComponent
         {
             deathWaitJob = new WaitJob(delegate
             {
-                switch (deathType)
+                if (gameObject.activeSelf)
                 {
-                    case DeathType.Destroy:
-                        if (gameObject != null) Destroy(gameObject);
-                        break;
-                    case DeathType.Disable:
-                        gameObject.SetActive(false);
-                        break;
-                }            
+                    switch (deathType)
+                    {
+                        case DeathType.Destroy:
+                            if (gameObject != null) Destroy(gameObject);
+                            break;
+                        case DeathType.Disable:
+                            gameObject.SetActive(false);
+                            break;
+                    }
+                }
+                else
+                {
+                    deathWaitJob.CancelJob();
+                }
+                           
             }, delayTime);
         }
     }

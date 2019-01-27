@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 public class NavigatonComponent : EntityComponent
 {
     [Header("Navigiation Value")]
-    public Transform currentTraget;
-    private Transform lastTraget;
+    public List<GameObject> targets = new List<GameObject>();
+    public GameObject nearestTarget;
 
 
     //Floats
@@ -30,21 +31,35 @@ public class NavigatonComponent : EntityComponent
 
     public override void UpdateComponent()
     {
-        //New target
-        if (currentTraget != lastTraget)
-        {
-            startDistance = (currentTraget.position - mappingComponent.movementTransform.position).magnitude;
-        }
+        GetNearestTarget();
 
         //Update distance
-        if (currentTraget != null)
+        if (nearestTarget != null)
         {
-            currentDistance = (currentTraget.position - mappingComponent.movementTransform.position).magnitude;
+            currentDistance = (nearestTarget.transform.position - mappingComponent.movementTransform.position).magnitude;
             currentDistance -= goalDistance;
 
             //Light intensity
-            lightIntensity = maxLightIntensity / (goalDistance / currentDistance);
+            float mag = (nearestTarget.transform.position - mappingComponent.movementTransform.position).magnitude;
+
+            lightIntensity = mag / 100;
             lightIntensity = Mathf.Clamp(lightIntensity, 0f, maxLightIntensity);
+            lightIntensity = maxLightIntensity - lightIntensity;
+        }
+    }
+
+
+    private void GetNearestTarget()
+    {
+        float nearest = float.MaxValue;
+
+        for (int i = 0; i < targets.Count; i++)
+        {
+            if (nearest > (targets[i].transform.position - mappingComponent.movementTransform.position).magnitude)
+            {
+                nearest = (targets[i].transform.position - mappingComponent.movementTransform.position).magnitude;
+                nearestTarget = targets[i];
+            }
         }
     }
 
