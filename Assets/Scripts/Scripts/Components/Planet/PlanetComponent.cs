@@ -49,7 +49,7 @@ public class PlanetComponent : EntityComponent
 
     public override void UpdateComponent() { }
 
-
+    
     private void OnDestroy()
     {
         onDeath.Invoke();

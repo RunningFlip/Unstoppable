@@ -9,6 +9,9 @@ public class DamageReceiverComponent : EntityComponent
     //Components
     private CollisionComponent collisionComponent;
 
+    //Event
+    public SimpleEvent onDeath = new SimpleEvent();
+
 
     public override void InitializeComponent()
     {
@@ -42,6 +45,7 @@ public class DamageReceiverComponent : EntityComponent
         {
             if (link.entityController.GetComponent<DamageEmitterComponent>())
             {
+                onDeath.Invoke();
                 DeathSimpleComponent.AddDeathSimpleComponent(entityController);
             }
         }

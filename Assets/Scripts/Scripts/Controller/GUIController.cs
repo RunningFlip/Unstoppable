@@ -21,8 +21,12 @@ public class GUIController : MonoBehaviour
     public List<Image> branchNodes = new List<Image>();
 
 
-    //Job
-    private DefaultJob lerpJob;
+    //Flag
+    private bool start;
+    private bool backToMenu;
+
+    //Floats
+    private float passedTime = 0;
 
 
     public void Awake()
@@ -30,10 +34,8 @@ public class GUIController : MonoBehaviour
         if (Instance == null) Instance = this;
 
         //Buttons
-        startGameButton.onClick.AddListener(delegate { StartGame(); });
+        startGameButton.onClick.AddListener(delegate { start = true; });
         quitGameButton.onClick.AddListener(delegate { Application.Quit(); });
-
-        StartGame(); //TODO HAS TO BE REMOVED!
     }
 
     /// <summary>
@@ -63,24 +65,48 @@ public class GUIController : MonoBehaviour
     }
 
 
-    private void StartGame()
+    private void Update()
     {
-        if (lerpJob != null && lerpJob.isActive) lerpJob.CancelJob();
-
-        float passedTime = 0;
-
-        lerpJob = new DefaultJob(delegate 
+        if (start)
         {
             if (passedTime >= lerpTime)
             {
                 GameController.Instance.StartGame();
-                lerpJob.CancelJob();
+                start = false;
+                passedTime = 0;
+                menuGroup.alpha = 0;
+                gameplayGroup.alpha = 1;
+                menuGroup.gameObject.SetActive(false);
+                return;
             }
 
             menuGroup.alpha = 1 - (1 / lerpTime) * passedTime;
             gameplayGroup.alpha = (1 / lerpTime) * passedTime;
 
             passedTime += Time.deltaTime;
-        });
+        } 
+
+        if (backToMenu)
+        {
+            if (passedTime >= lerpTime)
+            {
+                backToMenu = false;
+                passedTime = 0;
+                gameplayGroup.alpha = 0;
+                menuGroup.alpha = 1;
+                return;
+            }
+
+            gameplayGroup.alpha = 1 - (1 / lerpTime) * passedTime;
+            menuGroup.alpha = (1 / lerpTime) * passedTime;
+
+            passedTime += Time.deltaTime;
+        }
+    }
+
+
+    public void BackToMenu()
+    {
+        backToMenu = true;
     }
 }

@@ -81,11 +81,13 @@ public class HarvestComponent : EntityComponent
             planetComponent.energyStorage -= 1;
             energyComponent.currentEnergy += 1;
 
+            /*
             if (planetComponent.planetCollider.transform.localScale.x > 0)
             {
                 float step =  1f / (float)planetComponent.energyStorageStart;
                 planetComponent.planetCollider.transform.localScale -= new Vector3(step, step, step);
             }
+            */
         }
         else
         {
