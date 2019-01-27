@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114343335101195102}
   - component: {fileID: 114160212921580678}
   - component: {fileID: 114788179251823970}
+  - component: {fileID: 114445343570593126}
   m_Layer: 0
   m_Name: ForestPlanet
   m_TagString: Untagged
@@ -169,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7aa0e4194d2004f92084ce7dd2a490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlackHole: 0
   circleCollider: {fileID: 58581559338526862}
   attractionMask:
     serializedVersion: 2
@@ -178,7 +180,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1647983976275910}
+  m_GameObject: {fileID: 1267417934639926}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8aca609b8ac9b3447aa8d7c0971d709b, type: 3}
@@ -187,7 +189,7 @@ MonoBehaviour:
   shakeAmount: 0.1
 --- !u!114 &114445343570593126
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1267417934639926}
@@ -239,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0946819691750b846b22583a08d2c91a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionComponent: {fileID: 114343335101195102}
+  collisionComponent: {fileID: 0}
 --- !u!114 &114788179251823970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,7 +254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyable: 1
-  dangerous: 0
   harvestable: 0
   energyBonus: 0
   energyStorage: 0
