@@ -58,8 +58,7 @@ public class GUIController : MonoBehaviour
             }
             else
             {
-                float differnce = _currentEnergy - backLog - percPerNode;
-                branchNodes[i].fillAmount = (differnce * 100) / percPerNode; ;
+                branchNodes[i].fillAmount = 0;
             }
         }
     }

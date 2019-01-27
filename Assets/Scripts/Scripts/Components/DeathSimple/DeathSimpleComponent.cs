@@ -21,7 +21,7 @@ public class DeathSimpleComponent : EntityComponent
                 switch (deathType)
                 {
                     case DeathType.Destroy:
-                        Destroy(gameObject);
+                        if (gameObject != null) Destroy(gameObject);
                         break;
                     case DeathType.Disable:
                         gameObject.SetActive(false);

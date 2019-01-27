@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            TargetComponent.AddTargetComponent(lastTarget.GetComponent<EntityController>(), mappingComponent.movementTransform);
+            TargetComponent.AddTargetComponent(lastTarget.GetComponent<EntityController>());
 
             lastTarget.GetComponent<TargetComponent>().onPlayerCollision.AddListener(delegate 
             {
@@ -118,8 +118,9 @@ public class GameController : MonoBehaviour
     {
         PlanetComponent[] planets = FindObjectsOfType<PlanetComponent>();
         for (int i = 0; i < planets.Length; i++)
-        { 
-            planets[i].onDeath.AddListener(delegate { SetNewTarget(false); });
+        {
+            planets[i].onDeath.Clear();
+            planets[i].planetDeathType = PlanetDeathType.None;
             planets[i].gameObject.SetActive(false);
         }
 

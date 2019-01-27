@@ -34,4 +34,10 @@ public class SimpleEvent
         if (myMultiDelegate == null) return;
         myMultiDelegate();
     }
+
+
+    public void Clear()
+    {
+        myMultiDelegate = null;
+    }
 }

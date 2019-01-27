@@ -3,9 +3,6 @@
 
 public class TargetComponent : EntityComponent
 {
-    //Target
-    private Transform target;
-
     //Components
     private CollisionComponent collisionComponent;
 
@@ -35,12 +32,11 @@ public class TargetComponent : EntityComponent
     }
 
 
-    public static void AddTargetComponent(EntityController _entityController, Transform _target)
+    public static void AddTargetComponent(EntityController _entityController)
     {
         if (_entityController.GetComponent<TargetComponent>() != null || _entityController.gameObject == null) return;
 
         TargetComponent component = _entityController.gameObject.AddComponent<TargetComponent>();
-        component.target = _target;
         _entityController.AddComponent(component);
     }
 
