@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Blink
+  m_Name: Flash
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,25 +20,25 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: a839d2f8fe4229649ba5af64f2ef9d59, type: 3}
-    - time: 0.022222223
+    - time: 0.025
       value: {fileID: 21300002, guid: a839d2f8fe4229649ba5af64f2ef9d59, type: 3}
-    - time: 0.044444446
+    - time: 0.05
       value: {fileID: 21300004, guid: a839d2f8fe4229649ba5af64f2ef9d59, type: 3}
-    - time: 0.06666667
+    - time: 0.075
       value: {fileID: 21300006, guid: a839d2f8fe4229649ba5af64f2ef9d59, type: 3}
-    - time: 0.08888889
+    - time: 0.1
       value: {fileID: 21300008, guid: a839d2f8fe4229649ba5af64f2ef9d59, type: 3}
-    - time: 0.11111111
+    - time: 0.125
       value: {fileID: 21300010, guid: a839d2f8fe4229649ba5af64f2ef9d59, type: 3}
-    - time: 0.13333334
+    - time: 0.15
       value: {fileID: 21300012, guid: a839d2f8fe4229649ba5af64f2ef9d59, type: 3}
-    - time: 0.15555556
+    - time: 0.175
       value: {fileID: 21300014, guid: a839d2f8fe4229649ba5af64f2ef9d59, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 45
+  m_SampleRate: 40
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -66,7 +66,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.17777778
+    m_StopTime: 0.2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
