@@ -14,14 +14,16 @@ public class CollisionComponent : EntityComponent
     //Last collision object
     [NonSerialized]
     public GameObject lastCollisionObject;
-    private GameObject backupCollisionObject;
+    [NonSerialized]
+    public GameObject backupCollisionObject;
     [NonSerialized]
     public Collision2D collision;
 
     //Last trigger object
     [NonSerialized]
     public GameObject lastTriggerObject;
-    private GameObject backupTriggerObject;
+    [NonSerialized]
+    public GameObject backupTriggerObject;
     [NonSerialized]
     public Collider2D trigger;
 

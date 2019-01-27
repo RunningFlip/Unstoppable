@@ -22,9 +22,10 @@ public class CollisionLink : MonoBehaviour
     //Collision Exit
     private void OnCollisionExit2D(Collision2D _collision)
     {
-        if (_collision != null && collisionComponent.lastCollisionObject != null)
+        if (_collision != null)
         {
             collisionComponent.lastCollisionObject = null;
+            collisionComponent.backupCollisionObject = null;
             collisionComponent.collision = null;
         }
     }
@@ -44,9 +45,10 @@ public class CollisionLink : MonoBehaviour
     //Trigger Exit
     private void OnTriggerExit2D(Collider2D _collision)
     {
-        if (_collision != null && collisionComponent.lastTriggerObject != null)
+        if (_collision != null)
         {
             collisionComponent.lastTriggerObject = null;
+            collisionComponent.backupTriggerObject = null;
             collisionComponent.trigger = null;
         }
     }

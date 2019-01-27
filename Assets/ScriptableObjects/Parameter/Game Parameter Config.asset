@@ -18,10 +18,15 @@ MonoBehaviour:
   angularDrag: 1.2
   circleRotateSpeed: 100
   harvestInterval: 0.2
-  dashForce: 100
-  dashCoolDown: 1.5
+  dashForce: 110
+  dashCoolDown: 0.8
   dashRequiredEnergy: 5
   dashGravityForbiddenTime: 2
-  minHardBreach: 30
+  minHardBreach: 20
   energyMalus: 5
-  spawnMagnitude: 3
+  spawnMagnitude: 4
+  deathParticlePrefab: {fileID: 1932801034150650, guid: 68e66ea9e5d9cad4dbbff145db5e6c27,
+    type: 2}
+  deathStarPrefab: {fileID: 1263251827887960, guid: 0f86c2226c6d8aa48a7d290730802fe5,
+    type: 2}
+  blackHolePrefab: {fileID: 0}

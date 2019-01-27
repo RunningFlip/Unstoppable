@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class AttractionComponent : EntityComponent
 {
     [Header("Attraction values")]
+    public bool isBlackHole;
     public CircleCollider2D circleCollider;
     public LayerMask attractionMask;
 
 
     //Attraction
     private float attraction = 0.6f;
+    private float blackHoleattraction = 1.6f;
 
     //Vectors
     private Vector3 pivot;
@@ -22,6 +23,9 @@ public class AttractionComponent : EntityComponent
     public override void InitializeComponent()
     {
         updateType = UpdateType.Update;
+
+        //attraciton
+        if (isBlackHole) attraction = blackHoleattraction;
 
         //Vectors
         pivot = circleCollider.transform.position;

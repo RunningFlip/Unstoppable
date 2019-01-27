@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4639132727528090}
   - component: {fileID: 198860397688171394}
   - component: {fileID: 199883441973099834}
+  - component: {fileID: 114202973423680794}
+  - component: {fileID: 114645458285488436}
   m_Layer: 0
   m_Name: BackImpact
   m_TagString: Untagged
@@ -72,6 +74,30 @@ Transform:
   m_Father: {fileID: 4639132727528090}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114202973423680794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1831962989432422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e343c97a9c345a4e9bacde958baa802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114645458285488436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1831962989432422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4947e3fcd09948c4082049cf0d13baab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathType: 0
+  delayTime: 1
 --- !u!198 &198181989524861904
 ParticleSystem:
   m_ObjectHideFlags: 1

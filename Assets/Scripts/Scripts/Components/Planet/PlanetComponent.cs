@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
+using System;
 
 
 public class PlanetComponent : EntityComponent
 {
     [Header("Planet Attributes")]
-    public bool destroyable;
-    public bool dangerous;
+    public bool destroyable;  
     public bool harvestable;
+    [NonSerialized]
+    public bool dangerous;
 
     [Header("Harvest")]
     public int energyBonus;
@@ -17,6 +19,9 @@ public class PlanetComponent : EntityComponent
 
     [Header("Death")]
     public PlanetDeathType planetDeathType = PlanetDeathType.Normal_Death;
+    private GameObject deathParticlePrefab;
+    private GameObject deathStarPrefab;
+    private GameObject blackHolePrefab;
 
     [Header("Planet Colliders")]
     public CircleCollider2D planetCollider;
@@ -28,10 +33,19 @@ public class PlanetComponent : EntityComponent
 
     public override void InitializeComponent()
     {
+        dangerous = GetComponent<DamageEmitterComponent>();
+
+        //Values
         energyBonus = (int)(bonus * planetCollider.radius);
         energyStorage = (int)(harvestConst * planetCollider.radius);
         energyStorageStart = energyStorage;
+
+        //Prefabs
+        deathParticlePrefab = GameController.Instance.GameParameter.deathParticlePrefab;
+        deathStarPrefab = GameController.Instance.GameParameter.deathStarPrefab;
+        blackHolePrefab = GameController.Instance.GameParameter.blackHolePrefab;
     }
+
 
     public override void UpdateComponent() { }
 
@@ -48,31 +62,19 @@ public class PlanetComponent : EntityComponent
         switch (planetDeathType)
         {
             case PlanetDeathType.Normal_Death:
-                NormalDeath();
+                GameObject prefab = null;
+
+                if (!dangerous) prefab = deathParticlePrefab;
+                else prefab = blackHolePrefab;
+
+                Instantiate(prefab, planetCollider.transform.position, Quaternion.identity);
                 break;
+
             case PlanetDeathType.Harvest_Death:
-                HarvestDeath();
-                break;
-            case PlanetDeathType.Supernova:
-                Supernova();
+                Instantiate(deathParticlePrefab, planetCollider.transform.position, Quaternion.identity);
+                Instantiate(deathStarPrefab, planetCollider.transform.position, Quaternion.identity);
                 break;
         }
-    }
-
-
-    private void NormalDeath()
-    {
-
-    }
-
-    private void HarvestDeath()
-    {
-
-    }
-
-    private void Supernova()
-    {
-
     }
 
 }
