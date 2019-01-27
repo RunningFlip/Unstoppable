@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -25,6 +26,7 @@ public class GameController : MonoBehaviour
 
     [Header("Targets")]
     public int targets = 4;
+    public GameObject lastTarget;
     public List<GameObject> targetList = new List<GameObject>();
 
     //Components
@@ -60,9 +62,26 @@ public class GameController : MonoBehaviour
 
     private void InitTargets()
     {
-        PlanetComponent[] planets = FindObjectsOfType<PlanetComponent>();
+        List<PlanetComponent> planets = FindObjectsOfType<PlanetComponent>().ToList();
 
-
+        for (int i = 0; i < targets; i++)
+        {
+            if (i < targets - 1)
+            {
+                int rdm = Random.Range(0, planets.Count);
+                targetList.Add(planets[rdm].gameObject);
+                PlanetComponent planet = targetList[rdm].GetComponent<PlanetComponent>();
+                planet.onDeath.AddListener(delegate { targetList.Remove(planet.gameObject); });
+                planets.RemoveAt(rdm);
+            }
+            else
+            {
+                int rdm = Random.Range(0, planets.Count);
+                lastTarget = planets[rdm].gameObject;
+                lastTarget.GetComponent<PlanetComponent>().harvestable = false;
+                planets.RemoveAt(rdm);
+            }
+        }
     }
 
     private void SetNewTarget(bool _first)
@@ -73,19 +92,22 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("Get new target");
 
-            PlanetComponent planet = targetList[0].GetComponent<PlanetComponent>();
+            PlanetComponent planet = targetList[0].GetComponent<PlanetComponent>();          
             planet.onDeath.AddListener(delegate { SetNewTarget(false); });
 
             navigatonComponent.currentTraget = targetList[0].transform;
         }
         else
         {
-            EndGame();
+            TargetComponent.AddTargetComponent(lastTarget.GetComponent<EntityController>(), mappingComponent.movementTransform);
+
+            lastTarget.GetComponent<TargetComponent>().onPlayerCollision.AddListener(delegate { EndGame(); });
+            navigatonComponent.currentTraget = lastTarget.transform;
         }
     }
 
 
-    private void EndGame()
+    public void EndGame()
     {
         Debug.Log("End");
 
