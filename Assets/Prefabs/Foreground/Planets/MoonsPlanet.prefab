@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyable: 1
   dangerous: 0
-  harvestable: 0
+  harvestable: 1
   energyBonus: 0
   energyStorage: 0
   energyStorageStart: 0

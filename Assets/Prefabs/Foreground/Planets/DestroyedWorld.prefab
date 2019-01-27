@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 114070880415563714}
   - component: {fileID: 114800115484758294}
   - component: {fileID: 114449869778823336}
-  - component: {fileID: 114679022323861552}
+  - component: {fileID: 114152331563378648}
   m_Layer: 0
   m_Name: DestroyedWorld
   m_TagString: Untagged
@@ -177,6 +177,26 @@ MonoBehaviour:
   rbody: {fileID: 50726285851541960}
   colliders:
   - {fileID: 58555929394701892}
+--- !u!114 &114152331563378648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856902156629122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyable: 0
+  dangerous: 0
+  harvestable: 0
+  energyBonus: 0
+  energyStorage: 0
+  energyStorageStart: 0
+  planetDeathType: 0
+  planetCollider: {fileID: 58555929394701892}
+  orbitCollider: {fileID: 58938085814804926}
 --- !u!114 &114443525381189154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,26 +224,6 @@ MonoBehaviour:
   attractionMask:
     serializedVersion: 2
     m_Bits: 512
---- !u!114 &114679022323861552
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1856902156629122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyable: 1
-  dangerous: 0
-  harvestable: 0
-  energyBonus: 0
-  energyStorage: 0
-  energyStorageStart: 0
-  planetDeathType: 0
-  planetCollider: {fileID: 58555929394701892}
-  orbitCollider: {fileID: 58938085814804926}
 --- !u!114 &114703956731912274
 MonoBehaviour:
   m_ObjectHideFlags: 1

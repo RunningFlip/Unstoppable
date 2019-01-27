@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114297506131230382}
   - component: {fileID: 114853296475075766}
   - component: {fileID: 114024947936592770}
+  - component: {fileID: 114650173270550098}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -293,6 +294,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionComponent: {fileID: 114853296475075766}
+--- !u!114 &114650173270550098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1691367316247064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyable: 0
+  dangerous: 1
+  harvestable: 1
+  energyBonus: 0
+  energyStorage: 0
+  energyStorageStart: 0
+  planetDeathType: 0
+  planetCollider: {fileID: 58296788267011878}
+  orbitCollider: {fileID: 58662929505363976}
 --- !u!114 &114853296475075766
 MonoBehaviour:
   m_ObjectHideFlags: 1

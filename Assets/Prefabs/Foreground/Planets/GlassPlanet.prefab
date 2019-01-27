@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114037857889145248}
   - component: {fileID: 114643590087023900}
   - component: {fileID: 114816063840643160}
+  - component: {fileID: 114227785974843186}
   m_Layer: 0
   m_Name: GlassPlanet
   m_TagString: Untagged
@@ -188,6 +189,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionComponent: {fileID: 114643590087023900}
+--- !u!114 &114227785974843186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1838403168676376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyable: 1
+  dangerous: 0
+  harvestable: 1
+  energyBonus: 0
+  energyStorage: 0
+  energyStorageStart: 0
+  planetDeathType: 0
+  planetCollider: {fileID: 58097368244144648}
+  orbitCollider: {fileID: 58603667936419794}
 --- !u!114 &114249513578521110
 MonoBehaviour:
   m_ObjectHideFlags: 1

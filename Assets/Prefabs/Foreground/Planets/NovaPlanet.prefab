@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114501199326173454}
   - component: {fileID: 114953396379545762}
   - component: {fileID: 114941320478003472}
+  - component: {fileID: 114215110337337006}
   m_Layer: 0
   m_Name: NovaPlanet
   m_TagString: Untagged
@@ -169,6 +170,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionComponent: {fileID: 114953396379545762}
+--- !u!114 &114215110337337006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452620018062752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyable: 1
+  dangerous: 0
+  harvestable: 1
+  energyBonus: 0
+  energyStorage: 0
+  energyStorageStart: 0
+  planetDeathType: 0
+  planetCollider: {fileID: 58854715422492436}
+  orbitCollider: {fileID: 58651335276367902}
 --- !u!114 &114259648963732478
 MonoBehaviour:
   m_ObjectHideFlags: 1
