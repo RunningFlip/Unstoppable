@@ -21,7 +21,8 @@ public class GameController : MonoBehaviour
     public CameraComponent cameraComponent;
 
     [Header("End Video")]
-    public GameObject videoPlayer;
+    public GameObject videoPlayer_success;
+    public GameObject videoPlayer_death;
 
     [Header("Enemies")]
     public GameObject enemyPrefab;
@@ -145,8 +146,8 @@ public class GameController : MonoBehaviour
 
         if (_success)
         {
-            videoPlayer.SetActive(true);
-            videoPlayer.GetComponent<VideoPlayer>().Play();
+            videoPlayer_success.SetActive(true);
+            videoPlayer_success.GetComponent<VideoPlayer>().Play();
 
             new WaitJob(delegate
             {
@@ -155,6 +156,16 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            /*
+            videoPlayer_death.SetActive(true);
+            videoPlayer_death.GetComponent<VideoPlayer>().Play();
+
+            new WaitJob(delegate
+            {
+                SceneManager.LoadScene(0);
+            }, 3.5f);
+            */
+
             SceneManager.LoadScene(0);
         }
     }
