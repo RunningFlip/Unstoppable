@@ -202,7 +202,7 @@ MonoBehaviour:
   shakeAmount: 0.7
 --- !u!114 &114445343570593126
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1267417934639926}
