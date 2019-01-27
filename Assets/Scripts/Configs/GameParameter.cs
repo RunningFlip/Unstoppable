@@ -24,6 +24,7 @@ public class GameParameter : ScriptableObject
     public float dashCoolDown;
     public int dashRequiredEnergy;
     public float dashGravityForbiddenTime;
+    public float dashMovementForbiddenTime;
 
     [Header("Player Impacat")]
     public float minHardBreach;
@@ -32,6 +33,6 @@ public class GameParameter : ScriptableObject
 
     [Header("Death Type Prefabs")]
     public GameObject deathParticlePrefab;
-    public GameObject deathStarPrefab;
+    public GameObject[] deathStarPrefabs;
     public GameObject blackHolePrefab;
 }

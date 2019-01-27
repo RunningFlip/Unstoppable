@@ -11,9 +11,20 @@ public class GameController : MonoBehaviour
     public GameParameter GameParameter;
 
     [Header("PlayerCharacter")]
+    public Transform spawnPoint;
+    public GameObject playerPrefab;
     public EntityController playerEntity;
 
+    [Header("Camera")]
+    public CameraComponent cameraComponent;
+
+    [Header("Enemies")]
+    public GameObject enemyPrefab;
+    public int minSpawns;
+    public int maxSpawns;
+
     [Header("Targets")]
+    public int targets = 4;
     public List<GameObject> targetList = new List<GameObject>();
 
     //Components
@@ -26,34 +37,33 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         if (Instance == null) Instance = this;
-
-        //Input
-        inputComponent = FindObjectOfType<InputComponent>();
-        inputComponent.readInput = false;      
-
-        //Player entity
-        playerEntity = inputComponent.GetComponent<EntityController>();
-
-        //Components
-        mappingComponent = playerEntity.GetComponent<MappingComponent>();
-        navigatonComponent = playerEntity.GetComponent<NavigatonComponent>();
-        stateComponent = playerEntity.GetComponent<StateComponent>();
-
-        //Start
-        StartGame();
     }
 
 
-    private void StartGame()
+    public void StartGame()
     {
         Debug.Log("Start");
 
+        cameraComponent = FindObjectOfType<CameraComponent>();
+
+        SpawnPlayer();
+
+        //Setup
+        InitTargets();
         inputComponent.readInput = true;
         navigatonComponent.currentTraget = targetList[0].transform;
 
+        //Start
         SetNewTarget(true);
     }
 
+
+    private void InitTargets()
+    {
+        PlanetComponent[] planets = FindObjectsOfType<PlanetComponent>();
+
+
+    }
 
     private void SetNewTarget(bool _first)
     {
@@ -79,8 +89,32 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("End");
 
-        mappingComponent.rbody.velocity = Vector2.zero;
-        stateComponent.SetState(StateType.Everything, false);
+        if (playerEntity != null)
+        {
+            mappingComponent.rbody.velocity = Vector2.zero;
+            stateComponent.SetState(StateType.Everything, false);
+            inputComponent.readInput = false;
+        }
+    }
+
+
+    private void SpawnPlayer()
+    {
+        if (playerEntity != null) DeathSimpleComponent.AddDeathSimpleComponent(playerEntity);
+
+        GameObject player = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
+        playerEntity = player.GetComponent<EntityController>();
+
+        //Input
+        inputComponent = FindObjectOfType<InputComponent>();
         inputComponent.readInput = false;
+
+        //Components
+        mappingComponent = playerEntity.GetComponent<MappingComponent>();
+        navigatonComponent = playerEntity.GetComponent<NavigatonComponent>();
+        stateComponent = playerEntity.GetComponent<StateComponent>();
+
+        //Camera
+        cameraComponent.followedObject = player.transform;
     }
 }

@@ -42,7 +42,7 @@ public class PlanetComponent : EntityComponent
 
         //Prefabs
         deathParticlePrefab = GameController.Instance.GameParameter.deathParticlePrefab;
-        deathStarPrefab = GameController.Instance.GameParameter.deathStarPrefab;
+        deathStarPrefab = GameController.Instance.GameParameter.deathStarPrefabs[UnityEngine.Random.Range(0, GameController.Instance.GameParameter.deathStarPrefabs.Length)];
         blackHolePrefab = GameController.Instance.GameParameter.blackHolePrefab;
     }
 
@@ -62,17 +62,19 @@ public class PlanetComponent : EntityComponent
         switch (planetDeathType)
         {
             case PlanetDeathType.Normal_Death:
-                GameObject prefab = null;
-
-                if (!dangerous) prefab = deathParticlePrefab;
-                else prefab = blackHolePrefab;
-
-                Instantiate(prefab, planetCollider.transform.position, Quaternion.identity);
+                Instantiate(deathParticlePrefab, planetCollider.transform.position, Quaternion.identity);
                 break;
 
             case PlanetDeathType.Harvest_Death:
-                Instantiate(deathParticlePrefab, planetCollider.transform.position, Quaternion.identity);
-                Instantiate(deathStarPrefab, planetCollider.transform.position, Quaternion.identity);
+                if (dangerous)
+                {
+                    Instantiate(blackHolePrefab, planetCollider.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(deathParticlePrefab, planetCollider.transform.position, Quaternion.identity);
+                    Instantiate(deathStarPrefab, planetCollider.transform.position, Quaternion.identity);
+                }               
                 break;
         }
     }

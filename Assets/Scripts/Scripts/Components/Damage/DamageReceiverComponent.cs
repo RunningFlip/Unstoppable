@@ -27,7 +27,7 @@ public class DamageReceiverComponent : EntityComponent
         collisionComponent = entityController.GetComponent<CollisionComponent>();
 
         //Event
-        collisionComponent.onCollision.AddListener(CheckCollision);
+        collisionComponent.onCollision.AddListener(delegate { CheckCollision(); });
     }
 
 
@@ -36,9 +36,14 @@ public class DamageReceiverComponent : EntityComponent
 
     private void CheckCollision()
     {
-        if (collisionComponent.lastCollisionObject.GetComponent<DamageEmitterComponent>())
+        EntityLink link = collisionComponent.lastCollisionObject.GetComponent<EntityLink>();
+
+        if (link != null)
         {
-            DeathSimpleComponent.AddDeathSimpleComponent(entityController);
+            if (link.entityController.GetComponent<DamageEmitterComponent>())
+            {
+                DeathSimpleComponent.AddDeathSimpleComponent(entityController);
+            }
         }
     }
 }

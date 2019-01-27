@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 63c81290241ad6346aa51dcd6bf94e0e
+    path: Assets/Scenes/PhysicsIntegration.unity
+    guid: 046b3860405d28249bd7ab35e5895911
   m_configObjects: {}

@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 114814124552493664}
   - component: {fileID: 114938618418706774}
   - component: {fileID: 114188850955697220}
+  - component: {fileID: 114423083660729640}
+  - component: {fileID: 114914644431635474}
   m_Layer: 0
   m_Name: RedDwarf
   m_TagString: Untagged
@@ -256,7 +258,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyable: 0
-  dangerous: 1
   harvestable: 1
   energyBonus: 5
   energyStorage: 40
@@ -264,6 +265,18 @@ MonoBehaviour:
   planetDeathType: 0
   planetCollider: {fileID: 58390582743223746}
   orbitCollider: {fileID: 58700264934033092}
+--- !u!114 &114423083660729640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338783760610282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aca609b8ac9b3447aa8d7c0971d709b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 0.7
 --- !u!114 &114465508371506524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,6 +325,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionComponent: {fileID: 114814124552493664}
+--- !u!114 &114914644431635474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338783760610282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1741ec56bddfe54882b240c72e8141f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114938618418706774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -323,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7aa0e4194d2004f92084ce7dd2a490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlackHole: 0
   circleCollider: {fileID: 58700264934033092}
   attractionMask:
     serializedVersion: 2

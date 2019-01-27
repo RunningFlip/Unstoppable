@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114505031335633948}
   - component: {fileID: 114821618109712064}
   - component: {fileID: 114601022425853754}
+  - component: {fileID: 114923275975609942}
   m_Layer: 0
   m_Name: ToxicDesertPlanet
   m_TagString: Untagged
@@ -214,7 +215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyable: 1
-  dangerous: 0
   harvestable: 1
   energyBonus: 0
   energyStorage: 0
@@ -256,10 +256,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7aa0e4194d2004f92084ce7dd2a490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlackHole: 0
   circleCollider: {fileID: 58709417073017804}
   attractionMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &114923275975609942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1213801946986046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aca609b8ac9b3447aa8d7c0971d709b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 0.7
 --- !u!212 &212021827029860232
 SpriteRenderer:
   m_ObjectHideFlags: 1

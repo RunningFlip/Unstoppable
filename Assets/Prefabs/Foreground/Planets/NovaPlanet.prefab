@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114953396379545762}
   - component: {fileID: 114941320478003472}
   - component: {fileID: 114215110337337006}
+  - component: {fileID: 114698203385880300}
   m_Layer: 0
   m_Name: NovaPlanet
   m_TagString: Untagged
@@ -182,7 +183,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyable: 1
-  dangerous: 0
   harvestable: 1
   energyBonus: 0
   energyStorage: 0
@@ -232,6 +232,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e343c97a9c345a4e9bacde958baa802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114698203385880300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452620018062752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aca609b8ac9b3447aa8d7c0971d709b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 0.7
 --- !u!114 &114941320478003472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7aa0e4194d2004f92084ce7dd2a490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlackHole: 0
   circleCollider: {fileID: 58651335276367902}
   attractionMask:
     serializedVersion: 2

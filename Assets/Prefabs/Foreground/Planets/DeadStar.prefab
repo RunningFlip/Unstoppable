@@ -60,6 +60,8 @@ GameObject:
   - component: {fileID: 114447376906282368}
   - component: {fileID: 114464501121670318}
   - component: {fileID: 114002242298405890}
+  - component: {fileID: 114564864686220694}
+  - component: {fileID: 114073819680950258}
   m_Layer: 0
   m_Name: DeadStar
   m_TagString: Untagged
@@ -237,7 +239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyable: 0
-  dangerous: 1
   harvestable: 1
   energyBonus: 0
   energyStorage: 0
@@ -245,6 +246,17 @@ MonoBehaviour:
   planetDeathType: 0
   planetCollider: {fileID: 58269857063715704}
   orbitCollider: {fileID: 58393117330060954}
+--- !u!114 &114073819680950258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1165262500126742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1741ec56bddfe54882b240c72e8141f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114197301710903874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -304,10 +316,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7aa0e4194d2004f92084ce7dd2a490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlackHole: 0
   circleCollider: {fileID: 58393117330060954}
   attractionMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &114564864686220694
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1165262500126742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aca609b8ac9b3447aa8d7c0971d709b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 0.7
 --- !u!114 &114816292307302386
 MonoBehaviour:
   m_ObjectHideFlags: 1

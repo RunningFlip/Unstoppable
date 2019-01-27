@@ -14,10 +14,15 @@ public class DashComponent : EntityComponent
     public float cooldown;
     public int requiredEnergy;
     public float gravityForbiddenTime;
+    public float movementForbiddenTime;
+
+    [Header("Particle")]
+    public ParticleSystem particleSystem;
 
 
     //Flag
-    public bool inReset;
+    private bool inGravityReset;
+    private bool inMovementReset;
 
     //Time
     private float lastTimeStamp = -float.MaxValue;
@@ -42,6 +47,7 @@ public class DashComponent : EntityComponent
         cooldown = GameController.Instance.GameParameter.dashCoolDown;
         requiredEnergy = GameController.Instance.GameParameter.dashRequiredEnergy;
         gravityForbiddenTime = GameController.Instance.GameParameter.dashGravityForbiddenTime;
+        movementForbiddenTime = GameController.Instance.GameParameter.dashMovementForbiddenTime;
 
         //Components
         mappingComponent = GetComponent<MappingComponent>();
@@ -73,12 +79,21 @@ public class DashComponent : EntityComponent
             }
         }
 
-        if (inReset)
+        if (inGravityReset)
         {
             if (lastTimeStamp + gravityForbiddenTime < Time.time)
             {
-                inReset = false;
+                inGravityReset = false;
                 stateComponent.SetState(StateType.ExternalGravity, true);
+            }
+        }
+
+        if (inMovementReset)
+        {
+            if (lastTimeStamp + movementForbiddenTime < Time.time)
+            {
+                inMovementReset = false;
+                stateComponent.SetState(StateType.Movement, true);
             }
         }
     }
@@ -90,15 +105,23 @@ public class DashComponent : EntityComponent
     /// </summary>
     private void Dash()
     {
-        if (inReset)
+        if (inGravityReset)
         {
-            inReset = false;
+            inGravityReset = false;
             stateComponent.SetState(StateType.ExternalGravity, true);
         }
 
+        if (inMovementReset)
+        {
+            inMovementReset = false;
+            stateComponent.SetState(StateType.Movement, true);
+        }
+
         //State
-        inReset = true;
+        inGravityReset = true;
+        inMovementReset = true;
         stateComponent.SetState(StateType.ExternalGravity, false);
+        stateComponent.SetState(StateType.Movement, false);
 
         //Free dash
         lastTimeStamp = Time.time;
@@ -107,6 +130,12 @@ public class DashComponent : EntityComponent
         {
             freeDash = false;
             circleComponent.reset = true;
+        }
+
+        //Particle System
+        if (!particleSystem.isPlaying)
+        {
+            particleSystem.Play();
         }
 
         //Force

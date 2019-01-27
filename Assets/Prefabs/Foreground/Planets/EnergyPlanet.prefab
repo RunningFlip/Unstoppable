@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114875661248080974}
   - component: {fileID: 114504641657239252}
   - component: {fileID: 114296003406410344}
+  - component: {fileID: 114203452225273348}
   m_Layer: 0
   m_Name: EnergyPlanet
   m_TagString: Untagged
@@ -189,6 +190,18 @@ MonoBehaviour:
   rbody: {fileID: 50817520369428850}
   colliders:
   - {fileID: 58784501168637338}
+--- !u!114 &114203452225273348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1813689169112646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aca609b8ac9b3447aa8d7c0971d709b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 0.7
 --- !u!114 &114296003406410344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,7 +214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyable: 1
-  dangerous: 0
   harvestable: 1
   energyBonus: 0
   energyStorage: 0
@@ -232,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7aa0e4194d2004f92084ce7dd2a490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlackHole: 0
   circleCollider: {fileID: 58060423960512934}
   attractionMask:
     serializedVersion: 2

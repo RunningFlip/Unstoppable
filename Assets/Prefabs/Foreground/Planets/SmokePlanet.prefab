@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114398067675228470}
   - component: {fileID: 114500810721830140}
   - component: {fileID: 114504578349377348}
+  - component: {fileID: 114014977979853686}
   m_Layer: 0
   m_Name: SmokePlanet
   m_TagString: Untagged
@@ -158,6 +159,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 6
+--- !u!114 &114014977979853686
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1811687810401234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aca609b8ac9b3447aa8d7c0971d709b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 0.7
 --- !u!114 &114287772811543662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7aa0e4194d2004f92084ce7dd2a490, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlackHole: 0
   circleCollider: {fileID: 58713836512906388}
   attractionMask:
     serializedVersion: 2
@@ -222,7 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyable: 1
-  dangerous: 0
   harvestable: 1
   energyBonus: 0
   energyStorage: 0

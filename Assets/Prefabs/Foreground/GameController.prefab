@@ -52,3 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameParameter: {fileID: 11400000, guid: 7dd897ddefe6c084d984ae088ca1d2f7, type: 2}
+  spawnPoint: {fileID: 0}
+  playerPrefab: {fileID: 0}
+  playerEntity: {fileID: 0}
+  targetList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
