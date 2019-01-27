@@ -19,6 +19,9 @@ public class DashComponent : EntityComponent
     [Header("Particle")]
     public ParticleSystem particleSystem;
 
+    [Header("Audio")]
+    public AudioClip dashClip;
+
 
     //Flag
     private bool inGravityReset;
@@ -122,6 +125,9 @@ public class DashComponent : EntityComponent
         inMovementReset = true;
         stateComponent.SetState(StateType.ExternalGravity, false);
         stateComponent.SetState(StateType.Movement, false);
+
+        //Audio
+        AudioSource.PlayClipAtPoint(dashClip, mappingComponent.movementTransform.position);
 
         //Free dash
         lastTimeStamp = Time.time;

@@ -450,6 +450,7 @@ MonoBehaviour:
     type: 2}
   impactParticlesPrefab: {fileID: 1831962989432422, guid: 5a59e40ba4b49ea4b8f0ff00377d9be8,
     type: 2}
+  impactClip: {fileID: 8300000, guid: 30e63c5ee8688864ab3efbf032987a55, type: 3}
 --- !u!114 &114667954039024778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -544,6 +545,7 @@ MonoBehaviour:
   gravityForbiddenTime: 0
   movementForbiddenTime: 0
   particleSystem: {fileID: 198241712291904252}
+  dashClip: {fileID: 8300000, guid: 8761a0485fe31d149baa2c80c444307e, type: 3}
 --- !u!114 &114936647039012736
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -18,6 +18,7 @@ public class PlanetComponent : EntityComponent
     private const int bonus = 5;
 
     [Header("Death")]
+    public AudioClip deathClip;
     public PlanetDeathType planetDeathType = PlanetDeathType.Normal_Death;
     private GameObject deathParticlePrefab;
     private GameObject deathStarPrefab;
@@ -63,6 +64,7 @@ public class PlanetComponent : EntityComponent
         {
             case PlanetDeathType.Normal_Death:
                 Instantiate(deathParticlePrefab, planetCollider.transform.position, Quaternion.identity);
+                AudioSource.PlayClipAtPoint(deathClip, transform.position);
                 break;
 
             case PlanetDeathType.Harvest_Death:
@@ -75,7 +77,8 @@ public class PlanetComponent : EntityComponent
                 {
                     Instantiate(deathParticlePrefab, planetCollider.transform.position, Quaternion.identity);
                     Instantiate(deathStarPrefab, planetCollider.transform.position, Quaternion.identity);
-                }               
+                }
+                AudioSource.PlayClipAtPoint(deathClip, transform.position);
                 break;
         }
     }

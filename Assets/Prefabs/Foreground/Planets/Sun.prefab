@@ -325,6 +325,7 @@ MonoBehaviour:
   energyBonus: 0
   energyStorage: 0
   energyStorageStart: 0
+  deathClip: {fileID: 8300000, guid: c6c002b0349afed4ea458eab94dd19af, type: 3}
   planetDeathType: 1
   planetCollider: {fileID: 58296788267011878}
   orbitCollider: {fileID: 58662929505363976}
@@ -355,6 +356,7 @@ MonoBehaviour:
   energyBonus: 0
   energyStorage: 0
   energyStorageStart: 0
+  deathClip: {fileID: 0}
   planetDeathType: 0
   planetCollider: {fileID: 58296788267011878}
   orbitCollider: {fileID: 58662929505363976}

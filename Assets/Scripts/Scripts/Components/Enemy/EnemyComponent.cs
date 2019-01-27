@@ -7,6 +7,7 @@ public class EnemyComponent : EntityComponent
     [Header("Track Values")]
     public bool track = true;    
     public CircleCollider2D tracker;
+    public AudioClip detectionClip;
 
     [Header("Movement Values")]
     public float moveSpeed;
@@ -83,6 +84,7 @@ public class EnemyComponent : EntityComponent
         {
             track = false;
             enemyDetected = true;
+            AudioSource.PlayClipAtPoint(detectionClip, trans.position);
         }
     }
 

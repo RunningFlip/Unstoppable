@@ -297,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   track: 1
   tracker: {fileID: 58933562807333646}
+  detectionClip: {fileID: 8300000, guid: 742e07e9ba4cb2d409f125bf49db00aa, type: 3}
   moveSpeed: 7
 --- !u!114 &114955608614171738
 MonoBehaviour:

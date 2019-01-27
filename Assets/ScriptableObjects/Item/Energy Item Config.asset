@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d165e39815fc545b4f53d9ed05d39e, type: 3}
   m_Name: Energy Item Config
   m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 9a6f880e68eb4f945bd18dadc8b65a0d, type: 3}
   energy: 20

@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class GameController : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class GameController : MonoBehaviour
 
     [Header("Camera")]
     public CameraComponent cameraComponent;
+
+    [Header("End Video")]
+    public GameObject videoPlayer;
 
     [Header("Enemies")]
     public GameObject enemyPrefab;
@@ -80,7 +84,7 @@ public class GameController : MonoBehaviour
                     targetList.Remove(planet.gameObject);
                     currentTargets--;
 
-                    if (currentTargets == 1)
+                    if (currentTargets <= 1)
                     {
                         ActivateLastTarget();
                     }
@@ -102,51 +106,23 @@ public class GameController : MonoBehaviour
         }
     }
 
-    /*
-    private void SetTargets(int _left)
-    {
-        if (_left == -1) 
-        { 
-            for (int i = 0; i < targetList.Count; i++)
-            {
-                PlanetComponent planet = targetList[i].GetComponent<PlanetComponent>();
-                planet.onDeath.AddListener(delegate { SetTargets(currentTargets); });
-
-                navigatonComponent.currentTraget = targetList[i].transform;
-            }
-        }
-        
-        if (_left == 1)
-        {
-            TargetComponent.AddTargetComponent(lastTarget.GetComponent<EntityController>());
-
-            lastTarget.GetComponent<TargetComponent>().onPlayerCollision.AddListener(delegate 
-            {
-                DamageReceiverComponent receiverComponent = playerEntity.GetComponent<DamageReceiverComponent>();
-                receiverComponent.onDeath.RemoveListener(delegate { EndGame(); });
-                EndGame();
-            });
-            navigatonComponent.currentTraget = lastTarget.transform;
-        }
-    }
-    */
-
 
     private void ActivateLastTarget()
     {
         TargetComponent.AddTargetComponent(lastTarget.GetComponent<EntityController>());
+        lastTarget.GetComponent<PlanetComponent>().destroyable = false;
 
         lastTarget.GetComponent<TargetComponent>().onPlayerCollision.AddListener(delegate
         {
             DamageReceiverComponent receiverComponent = playerEntity.GetComponent<DamageReceiverComponent>();
-            receiverComponent.onDeath.RemoveListener(delegate { EndGame(); });
-            EndGame();
+            receiverComponent.onDeath.RemoveListener(delegate { EndGame(true); });
+            EndGame(true);
         });
         navigatonComponent.currentTraget = lastTarget.transform;
     }
 
 
-    public void EndGame()
+    public void EndGame(bool _success = false)
     {
         PlanetComponent[] planets = FindObjectsOfType<PlanetComponent>();
         for (int i = 0; i < planets.Length; i++)
@@ -166,7 +142,21 @@ public class GameController : MonoBehaviour
         {
             DeathSimpleComponent.AddDeathSimpleComponent(playerEntity);
         }
-        SceneManager.LoadScene(0);
+
+        if (_success)
+        {
+            videoPlayer.SetActive(true);
+            videoPlayer.GetComponent<VideoPlayer>().Play();
+
+            new WaitJob(delegate
+            {
+                SceneManager.LoadScene(0);
+            }, 3.5f);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
 

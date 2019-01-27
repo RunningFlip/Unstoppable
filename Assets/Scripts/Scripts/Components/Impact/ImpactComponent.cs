@@ -12,6 +12,9 @@ public class ImpactComponent : EntityComponent
     public GameObject hitParticlesPrefab;
     public GameObject impactParticlesPrefab;
 
+    [Header("Audio")]
+    public AudioClip impactClip;
+
 
     //Flag
     [NonSerialized]
@@ -111,6 +114,8 @@ public class ImpactComponent : EntityComponent
     /// <param name="_planetComponent"></param>
     private void SpawnParticles(PlanetComponent _planetComponent, ref Collision2D _collision)
     {
+        AudioSource.PlayClipAtPoint(impactClip, transform.position);
+
         Vector3 hit = _collision.contacts[0].point;
         Vector3 normal = -_collision.contacts[0].normal;
 
