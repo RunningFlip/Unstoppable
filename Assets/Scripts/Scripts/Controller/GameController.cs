@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     public int targets = 4;
     public GameObject lastTarget;
     public List<GameObject> targetList = new List<GameObject>();
+    private int currentTargets;
 
     //Components
     private InputComponent inputComponent;
@@ -56,12 +57,14 @@ public class GameController : MonoBehaviour
         navigatonComponent.currentTraget = targetList[0].transform;
 
         //Start
-        SetNewTarget(true);
+        //SetTargets();
     }
 
 
     private void InitTargets()
     {
+        currentTargets = targets - 1;
+
         List<PlanetComponent> planets = FindObjectsOfType<PlanetComponent>().ToList();
 
         for (int i = 0; i < targets; i++)
@@ -72,7 +75,16 @@ public class GameController : MonoBehaviour
                 targetList.Add(planets[rdm].gameObject);
 
                 PlanetComponent planet = planets[rdm].GetComponent<PlanetComponent>();
-                planet.onDeath.AddListener(delegate { targetList.Remove(planet.gameObject); });
+                planet.onDeath.AddListener(delegate 
+                {
+                    targetList.Remove(planet.gameObject);
+                    currentTargets--;
+
+                    if (currentTargets == 1)
+                    {
+                        ActivateLastTarget();
+                    }
+                });
 
                 planets.RemoveAt(rdm);
                 planets = planets.ToList();
@@ -90,16 +102,21 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void SetNewTarget(bool _first)
+    /*
+    private void SetTargets(int _left)
     {
-        if (targetList.Count > 0)
+        if (_left == -1) 
         { 
-            PlanetComponent planet = targetList[0].GetComponent<PlanetComponent>();          
-            planet.onDeath.AddListener(delegate { SetNewTarget(false); });
+            for (int i = 0; i < targetList.Count; i++)
+            {
+                PlanetComponent planet = targetList[i].GetComponent<PlanetComponent>();
+                planet.onDeath.AddListener(delegate { SetTargets(currentTargets); });
 
-            navigatonComponent.currentTraget = targetList[0].transform;
+                navigatonComponent.currentTraget = targetList[i].transform;
+            }
         }
-        else
+        
+        if (_left == 1)
         {
             TargetComponent.AddTargetComponent(lastTarget.GetComponent<EntityController>());
 
@@ -111,6 +128,21 @@ public class GameController : MonoBehaviour
             });
             navigatonComponent.currentTraget = lastTarget.transform;
         }
+    }
+    */
+
+
+    private void ActivateLastTarget()
+    {
+        TargetComponent.AddTargetComponent(lastTarget.GetComponent<EntityController>());
+
+        lastTarget.GetComponent<TargetComponent>().onPlayerCollision.AddListener(delegate
+        {
+            DamageReceiverComponent receiverComponent = playerEntity.GetComponent<DamageReceiverComponent>();
+            receiverComponent.onDeath.RemoveListener(delegate { EndGame(); });
+            EndGame();
+        });
+        navigatonComponent.currentTraget = lastTarget.transform;
     }
 
 
