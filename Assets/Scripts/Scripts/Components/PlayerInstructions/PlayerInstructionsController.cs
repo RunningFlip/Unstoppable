@@ -18,12 +18,19 @@ public class PlayerInstructionsController : EntityComponent {
 
     public void ShowStartText(float _duration)
     {
-        startText.SetActive(true);
-        StartCoroutine(FadeIn(2f));
         new WaitJob(delegate
         {
-            StartCoroutine(FadeOut(1.5f));
-        }, 4.5f);
+            startText.SetActive(true);
+            StartCoroutine(FadeIn(2f));
+            new WaitJob(delegate
+            {
+                StartCoroutine(FadeOut(2f));
+                new WaitJob(delegate
+                {
+                    startText.SetActive(false);
+                }, 2f);
+            }, _duration);
+        }, 1.5f);
     }
 
     public void ShowLostText()
