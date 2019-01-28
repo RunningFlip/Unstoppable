@@ -7,11 +7,14 @@ public class NavigatonComponent : EntityComponent
     [Header("Navigiation Value")]
     public List<GameObject> targets = new List<GameObject>();
     public GameObject nearestTarget;
+    [SerializeField] const float maxLightIntensity = 5;
+
+    [Header("Components")]
+    [SerializeField] Light playerLight;
 
 
     //Floats
     public float lightIntensity;
-    private const float maxLightIntensity = 3f;
 
     private float currentDistance;
     private float startDistance;
@@ -45,6 +48,7 @@ public class NavigatonComponent : EntityComponent
             lightIntensity = mag / 100;
             lightIntensity = Mathf.Clamp(lightIntensity, 0f, maxLightIntensity);
             lightIntensity = maxLightIntensity - lightIntensity;
+            playerLight.intensity = lightIntensity;
         }
     }
 

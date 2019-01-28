@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703a4d6877e8d864abb2d60ca9e00865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyable: 0
+  destroyable: 1
   harvestable: 0
   energyBonus: 0
   energyStorage: 0

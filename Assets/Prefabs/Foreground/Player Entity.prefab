@@ -402,7 +402,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe007fac0ec490442b71a36c5bf004cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTraget: {fileID: 0}
+  targets: []
+  nearestTarget: {fileID: 0}
+  playerLight: {fileID: 108295946695558112}
   lightIntensity: 0
 --- !u!114 &114498273522991242
 MonoBehaviour:
