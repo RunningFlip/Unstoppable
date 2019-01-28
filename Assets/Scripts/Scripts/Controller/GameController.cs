@@ -35,6 +35,9 @@ public class GameController : MonoBehaviour
     public List<GameObject> targetList = new List<GameObject>();
     private int currentTargets;
 
+    [Header("Overlays")]
+    [SerializeField] PlayerInstructionsController playerInstructions;
+
     //Components
     private InputComponent inputComponent;
     private MappingComponent mappingComponent;
@@ -162,7 +165,7 @@ public class GameController : MonoBehaviour
                 SceneManager.LoadScene(0);
             }, 3.5f);
             */
-            // TODO tell player that now all hope is lost
+            playerInstructions.ShowLostText();
             new WaitJob(delegate
             {
                 SceneManager.LoadScene(0);
