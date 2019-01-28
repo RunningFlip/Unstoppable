@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16049,7 +16049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameParameter: {fileID: 11400000, guid: 7dd897ddefe6c084d984ae088ca1d2f7, type: 2}
   spawnPoint: {fileID: 1436793685}
-  playerPrefab: {fileID: 1576542159921942, guid: 66d5f88613fc87641b48ae46c4df833c,
+  playerPrefab: {fileID: 1576542159921942, guid: 98092f8849058ef47810f9f644053d6d,
     type: 2}
   playerEntity: {fileID: 0}
   cameraComponent: {fileID: 0}

@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour
         //Setup
         InitTargets();
         inputComponent.readInput = true;
+        // TODO tell player he has to find planet
     }
 
 
@@ -161,8 +162,11 @@ public class GameController : MonoBehaviour
                 SceneManager.LoadScene(0);
             }, 3.5f);
             */
-
-            SceneManager.LoadScene(0);
+            // TODO tell player that now all hope is lost
+            new WaitJob(delegate
+            {
+                SceneManager.LoadScene(0);
+            }, 5f);
         }
     }
 

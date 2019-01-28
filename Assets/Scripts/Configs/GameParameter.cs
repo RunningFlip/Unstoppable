@@ -35,4 +35,5 @@ public class GameParameter : ScriptableObject
     public GameObject deathParticlePrefab;
     public GameObject[] deathStarPrefabs;
     public GameObject blackHolePrefab;
+    public GameObject playerDeathParticle;
 }

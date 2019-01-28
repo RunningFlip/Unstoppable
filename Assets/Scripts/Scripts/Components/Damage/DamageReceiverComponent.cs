@@ -45,6 +45,10 @@ public class DamageReceiverComponent : EntityComponent
         {
             if (link.entityController.GetComponent<DamageEmitterComponent>())
             {
+                if(gameObject.tag == "Player")
+                {
+                    Instantiate(GameController.Instance.GameParameter.playerDeathParticle, transform.position, Quaternion.identity);
+                }
                 onDeath.Invoke();
                 DeathSimpleComponent.AddDeathSimpleComponent(entityController);
             }
